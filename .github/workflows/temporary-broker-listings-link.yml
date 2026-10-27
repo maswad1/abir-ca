@@ -21,40 +21,40 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import re
-
-          broker = 'https://abirhlal.myrealtyonegroup.com/my-featured-listings'
-
-          p = Path('index.html')
-          s = p.read_text()
-          s = s.replace('href="listings.html"', f'href="{broker}" target="_blank" rel="noopener"')
-
-          replacement = f'''    <section class="showcase" id="listings">
-      <div class="wrap">
-        <div class="showcase-head">
-          <div><div class="eyebrow">Featured listings</div><h2>View Abir's live listings.</h2></div>
-          <p>Listings are updated directly by Abir's brokerage system. Until the official website integration is provided, use the live Realty ONE Group listing page for the most current inventory and status.</p>
-        </div>
-        <a class="btn gold" href="{broker}" target="_blank" rel="noopener">View live listings</a>
-      </div>
-    </section>'''
-          s, n = re.subn(r'    <section class="live-listings" id="listings">.*?    </section>', replacement, s, count=1, flags=re.S)
-          if n != 1:
-              raise SystemExit('Live listings iframe section not found')
+          broker='https://abirhlal.myrealtyonegroup.com/my-featured-listings'
+          p=Path('index.html')
+          s=p.read_text()
+          s=s.replace('href="listings.html"', f'href="{broker}" target="_blank" rel="noopener"')
+          replacement='\n'.join([
+            '    <section class="showcase" id="listings">',
+            '      <div class="wrap">',
+            '        <div class="showcase-head">',
+            '          <div><div class="eyebrow">Featured listings</div><h2>View Abir\'s live listings.</h2></div>',
+            '          <p>Listings are updated directly by Abir\'s brokerage system. Until the official website integration is provided, use the live Realty ONE Group listing page for the most current inventory and status.</p>',
+            '        </div>',
+            f'        <a class="btn gold" href="{broker}" target="_blank" rel="noopener">View live listings</a>',
+            '      </div>',
+            '    </section>'
+          ])
+          s,n=re.subn(r'    <section class="live-listings" id="listings">.*?    </section>',replacement,s,count=1,flags=re.S)
+          if n!=1: raise SystemExit('Live listings iframe section not found')
           p.write_text(s)
-
-          Path('listings.html').write_text(f'''<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="refresh" content="0; url={broker}">
-  <title>Abir Hlal Listings</title>
-  <script>window.location.replace({broker!r});</script>
-</head>
-<body>
-  <p>Opening Abir Hlal's live listings… <a href="{broker}">Continue to listings</a></p>
-</body>
-</html>''')
+          redirect='\n'.join([
+            '<!doctype html>',
+            '<html lang="en">',
+            '<head>',
+            '  <meta charset="utf-8">',
+            '  <meta name="viewport" content="width=device-width,initial-scale=1">',
+            f'  <meta http-equiv="refresh" content="0; url={broker}">',
+            '  <title>Abir Hlal Listings</title>',
+            f'  <script>window.location.replace("{broker}");</script>',
+            '</head>',
+            '<body>',
+            f'  <p>Opening Abir Hlal\'s live listings… <a href="{broker}">Continue to listings</a></p>',
+            '</body>',
+            '</html>'
+          ])
+          Path('listings.html').write_text(redirect)
           PY
 
       - name: Commit changes and remove updater
