@@ -25,37 +25,41 @@
 </head>
 <body>
   <div class="stage" id="stage">
-    <video id="hero" playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback"></video>
+    <video id="hero" playsinline preload="auto" controlslist="nodownload noplaybackrate noremoteplayback">
+      <source src="video/Video1.mp4?v=1" type="video/mp4">
+    </video>
     <div id="start" class="start"><span>Tap to play with sound</span></div>
   </div>
   <script>
-    (async () => {
+    (() => {
       const video = document.getElementById('hero');
       const stage = document.getElementById('stage');
       const start = document.getElementById('start');
-      const files = [0,1,2,3,4,5].map(i => `video/chunk_${String(i).padStart(2,'0')}.txt?v=3`);
-      const parts = await Promise.all(files.map(async url => {
-        const r = await fetch(url, {cache:'no-store'});
-        if (!r.ok) throw new Error(`Unable to load ${url}`);
-        return r.text();
-      }));
-      const b64 = parts.join('').replace(/\s+/g,'');
-      const binary = atob(b64);
-      const bytes = new Uint8Array(binary.length);
-      for (let i=0; i<binary.length; i++) bytes[i] = binary.charCodeAt(i);
-      video.src = URL.createObjectURL(new Blob([bytes], {type:'video/mp4'}));
+
       video.muted = false;
+      video.volume = 1;
       video.loop = false;
       video.controls = false;
 
       const playOnceWithSound = async () => {
-        start.classList.add('hide');
-        stage.removeEventListener('pointerdown', playOnceWithSound);
         video.currentTime = 0;
         video.muted = false;
-        try { await video.play(); } catch (_) { start.classList.remove('hide'); }
+        video.volume = 1;
+        try {
+          await video.play();
+          start.classList.add('hide');
+          stage.removeEventListener('pointerdown', playOnceWithSound);
+        } catch (_) {
+          start.classList.remove('hide');
+        }
       };
-      stage.addEventListener('pointerdown', playOnceWithSound, {once:true});
+
+      stage.addEventListener('pointerdown', playOnceWithSound);
+
+      video.addEventListener('ended', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
     })();
   </script>
 </body>
