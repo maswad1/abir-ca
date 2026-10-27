@@ -3,64 +3,200 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b0b0b">
-  <title>Abir Hlal</title>
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="description" content="Abir Hlal Real Estate — luxury service, local expertise, and personal guidance for buyers, sellers, and investors across Toronto and surrounding areas.">
+  <title>ABIR.CA | Abir Hlal Real Estate</title>
   <style>
+    :root{
+      --bg:#0b0b0c; --panel:#18181a; --panel2:#111113; --ink:#f4f1ea;
+      --muted:#b6b0aa; --gold:#c9a66b; --gold2:#dfbf86; --line:#28282b;
+      --serif: Georgia, 'Times New Roman', serif; --sans: Arial, Helvetica, sans-serif;
+    }
     *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:#0b0b0b}
-    body{min-height:100svh;display:grid;place-items:center;padding:20px;font-family:Arial,sans-serif;overflow:hidden}
-    .stage{position:relative;width:min(340px,82vw);display:flex;align-items:center;justify-content:center;cursor:pointer}
-    video{display:block;width:100%;height:auto;max-height:84svh;object-fit:contain;background:#000;border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.42)}
-    .start{position:absolute;inset:0;display:grid;place-items:center;border-radius:14px;background:rgba(0,0,0,.12);color:#fff;text-align:center;user-select:none}
-    .start span{padding:10px 16px;border-radius:999px;background:rgba(0,0,0,.68);font-size:14px;letter-spacing:.2px}
-    .start.hide{display:none}
-    @media (max-width:600px){
-      body{padding:12px}
-      .stage{width:min(88vw,340px)}
-      video{max-height:80svh;border-radius:12px}
-      .start{border-radius:12px}
-      .start span{font-size:13px}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.45}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(1240px,calc(100% - 64px));margin:auto}
+    header{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.03)}
+    .nav{height:78px;display:flex;align-items:center;gap:32px}
+    .brand{display:flex;flex-direction:column;line-height:.92;min-width:235px}
+    .brand b{font:400 29px/1 var(--serif);letter-spacing:.04em}
+    .brand small{margin-top:7px;color:var(--gold);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+    .links{display:flex;align-items:center;justify-content:center;gap:38px;flex:1;color:#d7d3ce;font-size:13px}
+    .links a{transition:.2s}.links a:hover{color:var(--gold2)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:0 28px;border:1px solid var(--gold);font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;transition:.2s;cursor:pointer}
+    .btn.gold{background:var(--gold);color:#16120c}.btn.gold:hover{background:var(--gold2)}
+    .btn.dark:hover{background:var(--gold);color:#16120c}
+    .menu{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:26px}
+
+    .hero{padding:32px 0 36px}
+    .hero-grid{display:grid;grid-template-columns:1.22fr 1fr;gap:28px;align-items:stretch}
+    .hero-photo{min-height:430px;border-radius:18px;overflow:hidden;background:#161616}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
+    .hero-copy{background:var(--panel);padding:46px 44px;display:flex;flex-direction:column;justify-content:center}
+    .eyebrow{color:var(--gold);font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0}
+    h1{font-size:clamp(48px,5vw,70px);line-height:.94;letter-spacing:-.025em;margin:22px 0 28px}
+    .lead{font:400 clamp(22px,2.1vw,29px)/1.2 var(--serif);color:#ddd8d1;max-width:520px;margin:0 0 22px}
+    .sub{color:var(--muted);font-size:15px;max-width:520px;margin:0 0 34px}
+    .actions{display:flex;gap:16px;flex-wrap:wrap}
+
+    .pillars{border-top:1px solid #121214;border-bottom:1px solid #171719;background:#0a0a0b}
+    .pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);min-height:84px;align-items:center;gap:28px}
+    .pillar b{display:block;color:var(--gold);font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
+    .pillar span{font-size:11px;color:#9f9a94}
+
+    .about{padding:42px 0 44px;background:#101012}
+    .about-grid{display:grid;grid-template-columns:.82fr .88fr .60fr .60fr;gap:28px;align-items:center}
+    .about-main{height:300px;border-radius:16px;overflow:hidden}
+    .about-main img{height:100%;width:100%;object-fit:cover;object-position:center 35%}
+    .about-copy{padding:10px 8px}
+    h2{font-size:clamp(36px,3.4vw,52px);line-height:1.02;margin:16px 0 24px}
+    .about-copy p{color:var(--muted);font-size:14px;line-height:1.7;margin:0 0 30px}
+    .tile{align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+    .tile-frame{height:205px;border-radius:14px;overflow:hidden;position:relative;background:#19191b}
+    .tile-frame img{height:100%;width:100%;object-fit:cover}
+    .tile-label{color:var(--gold);font-size:12px;font-weight:700;margin-top:14px;text-transform:uppercase}
+    .play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(transparent,rgba(0,0,0,.08));border:0;cursor:pointer}
+    .play span{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:#efe9dd;color:#9d7945;border:2px solid var(--gold);font-size:26px;padding-left:5px;box-shadow:0 7px 24px rgba(0,0,0,.22)}
+
+    .showcase{padding:56px 0;background:#0d0d0f;border-top:1px solid var(--line)}
+    .showcase-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}
+    .showcase-head h2{margin:8px 0 0}.showcase-head p{max-width:430px;color:var(--muted);font-size:14px;margin:0}
+    .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .feature{position:relative;min-height:390px;overflow:hidden;border-radius:18px;border:1px solid #242426}
+    .feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .feature:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.72))}
+    .feature-copy{position:absolute;z-index:2;left:30px;right:30px;bottom:28px}
+    .feature-copy b{color:var(--gold2);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+    .feature-copy h3{font-size:33px;margin-top:7px}
+
+    .cta{padding:36px 0;background:#0a0a0b;border-top:1px solid #151517}
+    .cta-grid{display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .cta h3{font-size:36px}.cta p{color:#aaa59f;margin:5px 0 0;font:16px var(--serif)}
+    footer{padding:25px 0 34px;border-top:1px solid #151517;color:#77736f;font-size:11px}
+    .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+    dialog{width:min(900px,92vw);padding:0;border:1px solid #3a342b;background:#050505;border-radius:16px;box-shadow:0 30px 100px rgba(0,0,0,.7)}
+    dialog::backdrop{background:rgba(0,0,0,.84)}
+    .video-shell{position:relative}.video-shell video{width:100%;display:block;max-height:82vh;background:#000;border-radius:16px}
+    .close{position:absolute;right:12px;top:12px;z-index:5;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.65);color:#fff;font-size:21px;cursor:pointer}
+
+    @media(max-width:980px){
+      .wrap{width:min(100% - 36px,760px)}
+      .links,.nav>.btn{display:none}.menu{display:block}.brand{min-width:auto}
+      .hero-grid{grid-template-columns:1fr}.hero-photo{min-height:520px}.hero-copy{padding:40px 34px}
+      .pillar-grid{grid-template-columns:1fr 1fr;padding:18px 0}
+      .about-grid{grid-template-columns:1fr 1fr}.about-copy{padding:10px 0}.about-main{height:430px}
+      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}
+      .mobile-links{display:none;position:absolute;left:0;right:0;top:78px;background:#0d0d0f;border-top:1px solid #262626;padding:18px 24px 24px}
+      .mobile-links.open{display:grid;gap:18px}.mobile-links a{font-size:15px;color:#e7e1da}
+    }
+    @media(max-width:620px){
+      .wrap{width:calc(100% - 28px)}.nav{height:68px}.mobile-links{top:68px}
+      .brand b{font-size:25px}.brand small{font-size:8px}
+      .hero{padding:18px 0 24px}.hero-photo{min-height:390px;border-radius:14px}
+      .hero-copy{padding:34px 24px}.lead{font-size:23px}.sub{font-size:14px}.btn{width:100%}
+      .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.about{padding:30px 0}
+      .about-grid{grid-template-columns:1fr}.about-main{height:440px}.tile-frame{height:350px}
+      .showcase{padding:40px 0}.showcase-head{display:block}.showcase-head p{margin-top:14px}.feature{min-height:460px}
+      .cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
     }
   </style>
 </head>
 <body>
-  <div class="stage" id="stage">
-    <video id="hero" playsinline preload="auto" controlslist="nodownload noplaybackrate noremoteplayback">
-      <source src="video/Video1.mp4?v=1" type="video/mp4">
-    </video>
-    <div id="start" class="start"><span>Tap to play with sound</span></div>
-  </div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Abir.ca home"><b>ABIR.CA</b><small>ABIR HLAL | REAL ESTATE</small></a>
+      <nav class="links" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#listings">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#contact">Contact</a>
+      </nav>
+      <a class="btn gold" href="#contact">Get in touch</a>
+      <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+    <nav class="mobile-links" id="mobileLinks" aria-label="Mobile navigation">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#listings">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-photo"><img src="pictures/abir_photo_6.jpg" alt="Abir Hlal at a desk holding a real estate mug"></div>
+        <div class="hero-copy">
+          <div class="eyebrow">Abir Hlal</div>
+          <h1>Move with<br>confidence.</h1>
+          <p class="lead">Luxury service. Local expertise.<br>Personal guidance at every step.</p>
+          <p class="sub">Buying, selling, or investing — with a calm, strategic approach tailored to your goals.</p>
+          <div class="actions"><a class="btn gold" href="#listings">View listings</a><a class="btn dark" href="#contact">Contact Abir</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars" aria-label="Services summary">
+      <div class="wrap pillar-grid">
+        <div class="pillar" id="buy"><b>Buy</b><span>Find your perfect home</span></div>
+        <div class="pillar" id="sell"><b>Sell</b><span>Get top value</span></div>
+        <div class="pillar"><b>Invest</b><span>Build your future</span></div>
+        <div class="pillar" id="communities"><b>Local expertise</b><span>Toronto &amp; surrounding areas</span></div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-main"><img src="pictures/abir_photo_3.jpg" alt="Abir Hlal standing in front of a luxury home"></div>
+        <div class="about-copy">
+          <div class="eyebrow">About Abir</div>
+          <h2>A refined approach<br>to real estate.</h2>
+          <p>Clear advice, thoughtful preparation, and strong local market knowledge — all centered on your goals.</p>
+          <a class="btn gold" href="#contact">Learn more</a>
+        </div>
+        <div class="tile">
+          <div class="tile-frame"><img src="pictures/abir_photo_7.jpg" alt="Portrait of Abir Hlal"></div>
+          <div class="tile-label">Portraits</div>
+        </div>
+        <div class="tile">
+          <div class="tile-frame">
+            <img src="pictures/abir_photo_2.jpg" alt="Abir Hlal in a bright luxury interior">
+            <button class="play" id="playVideo" aria-label="Play Abir video introduction"><span>▶</span></button>
+          </div>
+          <div class="tile-label">Video intro</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase" id="listings">
+      <div class="wrap">
+        <div class="showcase-head"><div><div class="eyebrow">Real estate, personally guided</div><h2>Prepared for every move.</h2></div><p>From first conversation to closing day, the experience is designed to feel clear, polished, and deliberate.</p></div>
+        <div class="showcase-grid">
+          <article class="feature"><img src="pictures/abir_photo_5.jpg" alt="Abir Hlal outside a luxury property"><div class="feature-copy"><b>Seller representation</b><h3>Position your home with confidence.</h3></div></article>
+          <article class="feature"><img src="pictures/abir_photo_2.jpg" alt="Professional portrait of Abir Hlal"><div class="feature-copy"><b>Personal representation</b><h3>Strategy backed by attentive service.</h3></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="wrap cta-grid"><div><h3>Ready for your next move?</h3><p>Let’s make the next step clear and confident.</p></div><a class="btn gold" href="mailto:abir.realtor@abir.ca">Contact Abir</a></div>
+    </section>
+  </main>
+
+  <footer><div class="wrap foot"><span>© <span id="year"></span> Abir Hlal Real Estate.</span><span>ABIR.CA</span></div></footer>
+
+  <dialog id="videoDialog" aria-label="Abir video introduction">
+    <div class="video-shell"><button class="close" id="closeVideo" aria-label="Close video">×</button><video id="introVideo" controls playsinline preload="metadata"><source src="video/Video1.mp4" type="video/mp4"></video></div>
+  </dialog>
+
   <script>
-    (() => {
-      const video = document.getElementById('hero');
-      const stage = document.getElementById('stage');
-      const start = document.getElementById('start');
-
-      video.muted = false;
-      video.volume = 1;
-      video.loop = false;
-      video.controls = false;
-
-      const playOnceWithSound = async () => {
-        video.currentTime = 0;
-        video.muted = false;
-        video.volume = 1;
-        try {
-          await video.play();
-          start.classList.add('hide');
-          stage.removeEventListener('pointerdown', playOnceWithSound);
-        } catch (_) {
-          start.classList.remove('hide');
-        }
-      };
-
-      stage.addEventListener('pointerdown', playOnceWithSound);
-
-      video.addEventListener('ended', () => {
-        video.pause();
-        video.currentTime = 0;
-      });
-    })();
+    const menuBtn=document.getElementById('menuBtn'), mobileLinks=document.getElementById('mobileLinks');
+    menuBtn.addEventListener('click',()=>{const open=mobileLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open);menuBtn.textContent=open?'×':'☰'});
+    mobileLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰'}));
+    const dialog=document.getElementById('videoDialog'), video=document.getElementById('introVideo');
+    document.getElementById('playVideo').addEventListener('click',()=>{dialog.showModal();video.currentTime=0;video.play().catch(()=>{})});
+    document.getElementById('closeVideo').addEventListener('click',()=>{video.pause();dialog.close()});
+    dialog.addEventListener('click',e=>{if(e.target===dialog){video.pause();dialog.close()}});
+    document.getElementById('year').textContent=new Date().getFullYear();
   </script>
 </body>
 </html>
