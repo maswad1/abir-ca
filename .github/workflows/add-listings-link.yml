@@ -1,0 +1,37 @@
+name: Add listings portrait link
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-listings-link.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update portrait tile link
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = '''        <div class="tile">\n          <div class="tile-frame"><img src="pictures/abir_photo_7.png" alt="Portrait of Abir Hlal"></div>\n          <div class="tile-label">Portraits</div>\n        </div>'''
+          new = '''        <a class="tile" href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener" aria-label="View Abir Hlal's listings">\n          <div class="tile-frame"><img src="pictures/abir_photo_7.png" alt="Portrait of Abir Hlal"></div>\n          <div class="tile-label">View My Listings</div>\n        </a>'''
+          if old not in s:
+              raise SystemExit('Expected portrait tile not found; no changes made.')
+          p.write_text(s.replace(old, new, 1))
+          PY
+          rm .github/workflows/add-listings-link.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html .github/workflows/add-listings-link.yml
+          git commit -m 'Link portrait tile to featured listings'
+          git push
