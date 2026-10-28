@@ -1,0 +1,24 @@
+name: Run Property Search Redesign
+'on':
+  push:
+    paths:
+      - '.github/workflows/run-redesign-search.yml'
+permissions:
+  contents: write
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply redesign
+        run: python3 .github/scripts/redesign_search.py
+      - name: Commit redesign and clean temporary files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/scripts/redesign_search.py
+          rm -f .github/workflows/redesign-search-section.yml
+          rm -f .github/workflows/run-redesign-search.yml
+          git add index.html .github/scripts/redesign_search.py .github/workflows/redesign-search-section.yml .github/workflows/run-redesign-search.yml
+          git commit -m "Redesign property search with visual Buy Rent flow"
+          git push
