@@ -1,0 +1,128 @@
+from pathlib import Path
+import re
+
+p = Path('index.html')
+s = p.read_text()
+
+old_nav = '<a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a>'
+new_nav = '<a href="#find-home" onclick="setSearchMode(\'buy\')">Buy</a><a href="#find-home" onclick="setSearchMode(\'rent\')">Rent</a><a href="#sell">Sell</a>'
+s = s.replace(old_nav, new_nav)
+
+old_pillars = '''      <div class="wrap pillar-grid">
+        <div class="pillar"><a href="#buy"><b>Buy</b><span>Find your perfect home</span></a></div>
+        <div class="pillar"><a href="#sell"><b>Sell</b><span>Get top value</span></a></div>
+        <div class="pillar"><b>Invest</b><span>Build your future</span></div>
+        <div class="pillar"><a href="#communities"><b>Local expertise</b><span>Toronto &amp; surrounding areas</span></a></div>
+      </div>'''
+new_pillars = '''      <div class="wrap pillar-grid">
+        <div class="pillar"><a href="#find-home" onclick="setSearchMode('buy')"><b>Buy</b><span>Search homes for sale</span></a></div>
+        <div class="pillar"><a href="#find-home" onclick="setSearchMode('rent')"><b>Rent</b><span>Search homes for rent</span></a></div>
+        <div class="pillar"><a href="#sell"><b>Sell</b><span>Plan your sale</span></a></div>
+        <div class="pillar"><a href="#contact"><b>Invest</b><span>Build your future</span></a></div>
+      </div>'''
+s = s.replace(old_pillars, new_pillars)
+
+new_section = '''    <section class="home-search" id="find-home">
+      <div class="wrap">
+        <div class="home-search-shell">
+          <div class="search-photo">
+            <img src="pictures/abir_photo_5.png" alt="Abir Hlal outside a modern home">
+            <div class="search-photo-copy"><div class="eyebrow">Property Search</div><h2>Find your next place.</h2></div>
+          </div>
+          <div class="search-panel">
+            <div class="search-tabs" role="group" aria-label="Choose buy or rent">
+              <button class="search-tab active" id="buyTab" type="button" onclick="setSearchMode('buy')">Buy</button>
+              <button class="search-tab" id="rentTab" type="button" onclick="setSearchMode('rent')">Rent</button>
+            </div>
+            <label class="search-label" for="searchArea">Where are you looking?</label>
+            <select class="search-select" id="searchArea">
+              <option value="mississauga">Mississauga</option>
+              <option value="toronto">Toronto</option>
+              <option value="oakville">Oakville</option>
+              <option value="brampton">Brampton</option>
+              <option value="milton">Milton</option>
+              <option value="burlington">Burlington</option>
+            </select>
+            <button class="btn gold search-submit" type="button" onclick="runPropertySearch()">Search MLS® listings</button>
+            <div class="search-note">Opens current REALTOR.ca listings with Buy or Rent already selected.</div>
+          </div>
+        </div>
+
+        <div class="sell-strip" id="sell">
+          <div class="sell-photo"><img src="pictures/abir_photo_2.png" alt="Abir Hlal in a luxury interior"></div>
+          <div class="sell-copy"><div><div class="eyebrow">Selling</div><h3>Thinking about selling?</h3><p>Start with a clear pricing and launch strategy.</p></div><a class="btn dark" href="#contact">Talk to Abir</a></div>
+        </div>
+      </div>
+    </section>
+'''
+s, n = re.subn(r'    <section class="services-detail".*?</section>\n', new_section, s, count=1, flags=re.S)
+if n != 1:
+    raise SystemExit('services-detail section not found exactly once')
+
+css_anchor = '    .about{padding:42px 0 44px;background:#101012}'
+css = '''    .pillar a{display:block;color:inherit}
+    .home-search{padding:58px 0;background:#0e0e10;border-top:1px solid var(--line)}
+    .home-search-shell{display:grid;grid-template-columns:1.08fr .92fr;min-height:430px;border:1px solid #2b2925;background:#131315;overflow:hidden}
+    .search-photo{position:relative;min-height:430px;overflow:hidden}
+    .search-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+    .search-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72))}
+    .search-photo-copy{position:absolute;z-index:2;left:34px;right:34px;bottom:30px}
+    .search-photo-copy h2{font-size:clamp(40px,4vw,58px);margin:10px 0 0}
+    .search-panel{padding:48px;display:flex;flex-direction:column;justify-content:center}
+    .search-tabs{display:flex;width:100%;max-width:320px;margin-bottom:34px;border:1px solid #3a352f}
+    .search-tab{flex:1;min-height:48px;border:0;background:transparent;color:#d9d3cc;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+    .search-tab.active{background:var(--gold);color:#17130d}
+    .search-label{color:#dcd6cf;font:600 18px var(--serif);margin-bottom:11px}
+    .search-select{width:100%;height:54px;padding:0 16px;background:#0b0b0c;color:var(--ink);border:1px solid #3a3631;font-size:15px;outline:none;margin-bottom:18px}
+    .search-select:focus{border-color:var(--gold)}
+    .search-submit{width:100%;min-height:52px}
+    .search-note{margin-top:14px;color:#817b74;font-size:11px;line-height:1.5}
+    .sell-strip{margin-top:24px;display:grid;grid-template-columns:300px 1fr;border:1px solid #28272a;background:#131315;min-height:190px;overflow:hidden}
+    .sell-photo{position:relative;min-height:190px}
+    .sell-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}
+    .sell-copy{padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .sell-copy h3{font-size:31px;margin:7px 0 7px}.sell-copy p{margin:0;color:var(--muted);font-size:13px}
+
+'''
+if '.home-search{' not in s:
+    if css_anchor not in s:
+        raise SystemExit('CSS anchor not found')
+    s = s.replace(css_anchor, css + css_anchor)
+
+s = s.replace('.service-detail-grid{grid-template-columns:1fr 1fr}.service-detail-card:last-child{grid-column:1/-1}.about-grid', '.home-search-shell{grid-template-columns:1fr}.search-photo{min-height:380px}.sell-strip{grid-template-columns:240px 1fr}.about-grid')
+s = s.replace('.pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.services-detail{padding:48px 0}.services-detail-head{display:block}.services-detail-head p{margin-top:14px}.service-detail-grid{grid-template-columns:1fr}.service-detail-card:last-child{grid-column:auto}.service-detail-card{min-height:290px}.about{padding:30px 0}', '.pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.home-search{padding:42px 0}.home-search-shell{grid-template-columns:1fr}.search-photo{min-height:330px}.search-panel{padding:30px 24px}.sell-strip{grid-template-columns:1fr}.sell-photo{min-height:260px}.sell-copy{padding:28px 24px;display:block}.sell-copy .btn{margin-top:20px}.about{padding:30px 0}')
+
+js_anchor = "    document.getElementById('year').textContent=new Date().getFullYear();"
+js = '''    let propertyMode='buy';
+    const propertyUrls={
+      buy:{
+        mississauga:'https://www.realtor.ca/on/mississauga/real-estate',
+        toronto:'https://www.realtor.ca/on/toronto/toronto/real-estate',
+        oakville:'https://www.realtor.ca/on/oakville/real-estate',
+        brampton:'https://www.realtor.ca/on/brampton/real-estate',
+        milton:'https://www.realtor.ca/on/milton/real-estate',
+        burlington:'https://www.realtor.ca/on/burlington/real-estate'
+      },
+      rent:{
+        mississauga:'https://www.realtor.ca/on/mississauga/rentals',
+        toronto:'https://www.realtor.ca/on/toronto/rentals',
+        oakville:'https://www.realtor.ca/on/oakville/rentals',
+        brampton:'https://www.realtor.ca/on/brampton/rentals',
+        milton:'https://www.realtor.ca/on/milton/rentals',
+        burlington:'https://www.realtor.ca/on/burlington/rentals'
+      }
+    };
+    function setSearchMode(mode){propertyMode=mode;const b=document.getElementById('buyTab'),r=document.getElementById('rentTab');if(b&&r){b.classList.toggle('active',mode==='buy');r.classList.toggle('active',mode==='rent')}}
+    function runPropertySearch(){const area=document.getElementById('searchArea').value;window.open(propertyUrls[propertyMode][area],'_blank','noopener')}
+'''
+if 'const propertyUrls=' not in s:
+    if js_anchor not in s:
+        raise SystemExit('JS anchor not found')
+    s = s.replace(js_anchor, js + js_anchor)
+
+if 'href="#communities"' in s or 'id="communities"' in s:
+    raise SystemExit('Communities link/section still present')
+if 'class="services-detail"' in s:
+    raise SystemExit('Old services section still present')
+
+p.write_text(s)
