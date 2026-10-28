@@ -1,0 +1,66 @@
+name: Add Recent Activity Section
+'on':
+  push:
+    paths:
+      - '.github/workflows/add-activity-section.yml'
+permissions:
+  contents: write
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add recent activity section
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          css_anchor='    .awards{padding:68px 0;background:#111113;border-top:1px solid var(--line)}'
+          css='''    .activity{padding:68px 0;background:#0b0b0c;border-top:1px solid var(--line)}
+    .activity-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:30px}
+    .activity-head h2{margin:10px 0 0}
+    .activity-head p{max-width:480px;color:var(--muted);font-size:14px;line-height:1.7;margin:0}
+    .activity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .activity-card{min-height:270px;padding:30px;border:1px solid #2b2925;background:linear-gradient(145deg,#18181a,#101011);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .activity-card:before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+    .activity-status{color:var(--gold2);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .activity-mark{font:500 54px/1 var(--serif);color:rgba(223,191,134,.82);margin:34px 0}
+    .activity-card h3{font-size:27px;margin:0 0 9px}
+    .activity-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+    .activity-note{margin-top:18px;color:#817b75;font-size:11px;line-height:1.6}
+
+'''
+          if '.activity{' not in s:
+              s=s.replace(css_anchor,css+css_anchor)
+          anchor='    <section class="awards" id="awards">'
+          html='''    <section class="activity" id="activity">
+      <div class="wrap">
+        <div class="activity-head">
+          <div><div class="eyebrow">Recent Activity</div><h2>In the field with Abir.</h2></div>
+          <p>Real moments from active listings, open houses, and successful sales across the communities Abir serves.</p>
+        </div>
+        <div class="activity-grid">
+          <article class="activity-card"><div><div class="activity-status">For Sale · Open House</div><div class="activity-mark">01</div></div><div><h3>Bringing homes to market.</h3><p>Professional presentation and hands-on attention from launch through buyer visits.</p></div></article>
+          <article class="activity-card"><div><div class="activity-status">Sold</div><div class="activity-mark">02</div></div><div><h3>Results that move clients forward.</h3><p>Focused strategy, strong execution, and successful closings.</p></div></article>
+          <article class="activity-card"><div><div class="activity-status">Client Success</div><div class="activity-mark">03</div></div><div><h3>Another move completed.</h3><p>Celebrating the moments that turn real-estate plans into accomplished goals.</p></div></article>
+        </div>
+        <div class="activity-note">Abir's recent activity photography is being prepared for this section; the layout is ready for the For Sale, Open House, and Sold images.</div>
+      </div>
+    </section>
+
+'''
+          if 'id="activity"' not in s:
+              s=s.replace(anchor,html+anchor)
+          s=s.replace('.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}', '.activity-grid{grid-template-columns:1fr 1fr}.activity-card:last-child{grid-column:1/-1}.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}')
+          s=s.replace('.awards{padding:48px 0}.awards-head{display:block}', '.activity{padding:48px 0}.activity-head{display:block}.activity-head p{margin-top:14px}.activity-grid{grid-template-columns:1fr}.activity-card:last-child{grid-column:auto}.activity-card{min-height:220px}.awards{padding:48px 0}.awards-head{display:block}')
+          p.write_text(s)
+          PY
+      - name: Commit update and remove updater
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/add-activity-section.yml
+          git add index.html .github/workflows/add-activity-section.yml
+          git commit -m "Add recent real estate activity section"
+          git push
