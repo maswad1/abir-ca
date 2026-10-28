@@ -1,0 +1,96 @@
+name: Add Awards Section
+on:
+  push:
+    paths:
+      - '.github/workflows/add-awards-section.yml'
+permissions:
+  contents: write
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add awards section
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+
+          s = s.replace(
+            '<a href="#communities">Communities</a><a href="#contact">Contact</a>',
+            '<a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#contact">Contact</a>'
+          )
+
+          css_anchor = '    .cta{padding:36px 0;background:#0a0a0b;border-top:1px solid #151517}'
+          awards_css = '''    .awards{padding:68px 0;background:#111113;border-top:1px solid var(--line)}
+    .awards-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:34px}
+    .awards-head h2{margin:10px 0 0}
+    .awards-head p{max-width:500px;color:var(--muted);font-size:14px;line-height:1.7;margin:0}
+    .awards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .award-card{min-height:235px;padding:30px 26px;border:1px solid #2d2923;background:linear-gradient(145deg,#191919,#111);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .award-card:before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+    .award-stat{font:600 clamp(38px,4vw,58px)/.95 var(--serif);color:var(--gold2);letter-spacing:-.03em}
+    .award-title{font:600 18px/1.2 var(--serif);margin-top:18px;color:var(--ink)}
+    .award-meta{margin-top:18px;color:#8f8981;font-size:11px;line-height:1.55;text-transform:uppercase;letter-spacing:.05em}
+    .awards-note{margin-top:22px;color:#77716a;font-size:11px;line-height:1.6}
+
+'''
+          if '.awards{' not in s:
+              s = s.replace(css_anchor, awards_css + css_anchor)
+
+          section_anchor = '    <section class="cta" id="contact">'
+          awards_html = '''    <section class="awards" id="awards">
+      <div class="wrap">
+        <div class="awards-head">
+          <div>
+            <div class="eyebrow">Awards &amp; Recognition</div>
+            <h2>15+ years of proven excellence.</h2>
+          </div>
+          <p>A career marked by nationally recognized sales performance, consistent market results, and long-standing professional service.</p>
+        </div>
+        <div class="awards-grid">
+          <article class="award-card">
+            <div><div class="award-stat">Top 2%</div><div class="award-title">Red Diamond Award</div></div>
+            <div class="award-meta">2021 · National performance<br>Royal LePage network · 19,000+ REALTORS®</div>
+          </article>
+          <article class="award-card">
+            <div><div class="award-stat">Top 10%</div><div class="award-title">President's Gold Award</div></div>
+            <div class="award-meta">2020 · Regional performance<br>Royal LePage network · 18,000+ REALTORS®</div>
+          </article>
+          <article class="award-card">
+            <div><div class="award-stat">15 Years</div><div class="award-title">Service Milestone</div></div>
+            <div class="award-meta">Recognized 2022<br>Continuous professional service</div>
+          </article>
+          <article class="award-card">
+            <div><div class="award-stat">Top 11%</div><div class="award-title">TRREB Market Performance</div></div>
+            <div class="award-meta">2022 · Market-wide ranking<br>TRREB performance statistics</div>
+          </article>
+        </div>
+        <div class="awards-note">Career recognition shown above reflects achievements earned across Abir Hlal's professional history and does not imply current affiliation with prior brokerages.</div>
+      </div>
+    </section>
+
+'''
+          if 'id="awards"' not in s:
+              s = s.replace(section_anchor, awards_html + section_anchor)
+
+          s = s.replace(
+            '      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}',
+            '      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.awards-grid{grid-template-columns:1fr 1fr}'
+          )
+          s = s.replace(
+            '      .cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}',
+            '      .awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}'
+          )
+
+          p.write_text(s)
+          PY
+      - name: Commit update and remove updater
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/add-awards-section.yml
+          git add index.html .github/workflows/add-awards-section.yml
+          git commit -m "Add Awards and Recognition section"
+          git push
