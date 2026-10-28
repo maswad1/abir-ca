@@ -51,6 +51,29 @@
     .pillar b{display:block;color:var(--gold);font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
     .pillar span{font-size:11px;color:#9f9a94}
 
+    .pillar a{display:block;color:inherit}
+    .home-search{padding:58px 0;background:#0e0e10;border-top:1px solid var(--line)}
+    .home-search-shell{display:grid;grid-template-columns:1.08fr .92fr;min-height:430px;border:1px solid #2b2925;background:#131315;overflow:hidden}
+    .search-photo{position:relative;min-height:430px;overflow:hidden}
+    .search-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+    .search-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.72))}
+    .search-photo-copy{position:absolute;z-index:2;left:34px;right:34px;bottom:30px}
+    .search-photo-copy h2{font-size:clamp(40px,4vw,58px);margin:10px 0 0}
+    .search-panel{padding:48px;display:flex;flex-direction:column;justify-content:center}
+    .search-tabs{display:flex;width:100%;max-width:320px;margin-bottom:34px;border:1px solid #3a352f}
+    .search-tab{flex:1;min-height:48px;border:0;background:transparent;color:#d9d3cc;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+    .search-tab.active{background:var(--gold);color:#17130d}
+    .search-label{color:#dcd6cf;font:600 18px var(--serif);margin-bottom:11px}
+    .search-select{width:100%;height:54px;padding:0 16px;background:#0b0b0c;color:var(--ink);border:1px solid #3a3631;font-size:15px;outline:none;margin-bottom:18px}
+    .search-select:focus{border-color:var(--gold)}
+    .search-submit{width:100%;min-height:52px}
+    .search-note{margin-top:14px;color:#817b74;font-size:11px;line-height:1.5}
+    .sell-strip{margin-top:24px;display:grid;grid-template-columns:300px 1fr;border:1px solid #28272a;background:#131315;min-height:190px;overflow:hidden}
+    .sell-photo{position:relative;min-height:190px}
+    .sell-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}
+    .sell-copy{padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .sell-copy h3{font-size:31px;margin:7px 0 7px}.sell-copy p{margin:0;color:var(--muted);font-size:13px}
+
     .about{padding:42px 0 44px;background:#101012}
     .about-grid{display:grid;grid-template-columns:.82fr .88fr .60fr .60fr;gap:28px;align-items:center}
     .about-main{height:300px;border-radius:16px;overflow:hidden}
@@ -150,7 +173,7 @@
       .links,.nav>.btn{display:none}.menu{display:block}.brand{min-width:auto}
       .hero-grid{grid-template-columns:1fr}.hero-photo{min-height:520px}.hero-copy{padding:40px 34px}
       .pillar-grid{grid-template-columns:1fr 1fr;padding:18px 0}
-      .service-detail-grid{grid-template-columns:1fr 1fr}.service-detail-card:last-child{grid-column:1/-1}.about-grid{grid-template-columns:1fr 1fr}.about-copy{padding:10px 0}.about-main{height:430px}
+      .home-search-shell{grid-template-columns:1fr}.search-photo{min-height:380px}.sell-strip{grid-template-columns:240px 1fr}.about-grid{grid-template-columns:1fr 1fr}.about-copy{padding:10px 0}.about-main{height:430px}
       .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.activity-grid{grid-template-columns:1fr 1fr}.activity-card:last-child{grid-column:1/-1}.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}.event-card:last-child{grid-column:1/-1}
       .mobile-links{display:none;position:absolute;left:0;right:0;top:78px;background:#0d0d0f;border-top:1px solid #262626;padding:18px 24px 24px}
       .mobile-links.open{display:grid;gap:18px}.mobile-links a{font-size:15px;color:#e7e1da}
@@ -160,7 +183,7 @@
       .brand b{font-size:25px}.brand small{font-size:8px}.brand-logo{width:32px;height:21px}
       .hero{padding:18px 0 24px}.hero-photo{min-height:390px;border-radius:14px}
       .hero-copy{padding:34px 24px}.lead{font-size:23px}.sub{font-size:14px}.btn{width:100%}
-      .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.services-detail{padding:48px 0}.services-detail-head{display:block}.services-detail-head p{margin-top:14px}.service-detail-grid{grid-template-columns:1fr}.service-detail-card:last-child{grid-column:auto}.service-detail-card{min-height:290px}.about{padding:30px 0}
+      .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.home-search{padding:42px 0}.home-search-shell{grid-template-columns:1fr}.search-photo{min-height:330px}.search-panel{padding:30px 24px}.sell-strip{grid-template-columns:1fr}.sell-photo{min-height:260px}.sell-copy{padding:28px 24px;display:block}.sell-copy .btn{margin-top:20px}.about{padding:30px 0}
       .about-grid{grid-template-columns:1fr}.about-main{height:440px}.tile-frame{height:350px}
       .showcase{padding:40px 0}.live-listings{padding:40px 0}.live-listings-head{display:block}.live-listings-head p{margin-top:14px}.listings-frame-wrap,.listings-frame{min-height:720px;height:720px}.listings-fallback{display:block}.listings-fallback .btn{margin-top:14px}.showcase-head{display:block}.showcase-head p{margin-top:14px}.feature{min-height:460px}
       .activity{padding:48px 0}.activity-head{display:block}.activity-head p{margin-top:14px}.activity-grid{grid-template-columns:1fr}.activity-card:last-child{grid-column:auto}.activity-card{min-height:220px}.awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.testimonials{padding:48px 0}.testimonial-shell{padding:32px 22px}.testimonial-placeholder .btn{width:100%}.events{padding:48px 0}.events-head{display:block}.events-head p{margin-top:14px}.events-grid{grid-template-columns:1fr}.event-card:last-child{grid-column:auto}.event-card{min-height:225px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
@@ -172,13 +195,13 @@
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="Abir.ca home"><span class="brand-mark"><img class="brand-logo" src="pictures/abir_logo_ah.png" alt="" aria-hidden="true"><b>ABIR.CA</b></span><small>ABIR HLAL | REAL ESTATE</small></a>
       <nav class="links" aria-label="Main navigation">
-        <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#events">Events</a><a href="#contact">Contact</a>
+        <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#find-home" onclick="setSearchMode('buy')">Buy</a><a href="#find-home" onclick="setSearchMode('rent')">Rent</a><a href="#sell">Sell</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#events">Events</a><a href="#contact">Contact</a>
       </nav>
       <a class="btn gold" href="#contact">Get in touch</a>
       <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     </div>
     <nav class="mobile-links" id="mobileLinks" aria-label="Mobile navigation">
-      <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#events">Events</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#find-home" onclick="setSearchMode('buy')">Buy</a><a href="#find-home" onclick="setSearchMode('rent')">Rent</a><a href="#sell">Sell</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#events">Events</a><a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -198,32 +221,42 @@
 
     <section class="pillars" aria-label="Services summary">
       <div class="wrap pillar-grid">
-        <div class="pillar"><a href="#buy"><b>Buy</b><span>Find your perfect home</span></a></div>
-        <div class="pillar"><a href="#sell"><b>Sell</b><span>Get top value</span></a></div>
-        <div class="pillar"><b>Invest</b><span>Build your future</span></div>
-        <div class="pillar"><a href="#communities"><b>Local expertise</b><span>Toronto &amp; surrounding areas</span></a></div>
+        <div class="pillar"><a href="#find-home" onclick="setSearchMode('buy')"><b>Buy</b><span>Search homes for sale</span></a></div>
+        <div class="pillar"><a href="#find-home" onclick="setSearchMode('rent')"><b>Rent</b><span>Search homes for rent</span></a></div>
+        <div class="pillar"><a href="#sell"><b>Sell</b><span>Plan your sale</span></a></div>
+        <div class="pillar"><a href="#contact"><b>Invest</b><span>Build your future</span></a></div>
       </div>
     </section>
 
-    <section class="services-detail" aria-label="Real estate services">
+    <section class="home-search" id="find-home">
       <div class="wrap">
-        <div class="services-detail-head">
-          <div><div class="eyebrow">How Abir Helps</div><h2>Clear guidance for every move.</h2></div>
-          <p>Whether buying, selling, or choosing the right community, Abir brings preparation, market insight, and personal guidance to each step.</p>
+        <div class="home-search-shell">
+          <div class="search-photo">
+            <img src="pictures/abir_photo_5.png" alt="Abir Hlal outside a modern home">
+            <div class="search-photo-copy"><div class="eyebrow">Property Search</div><h2>Find your next place.</h2></div>
+          </div>
+          <div class="search-panel">
+            <div class="search-tabs" role="group" aria-label="Choose buy or rent">
+              <button class="search-tab active" id="buyTab" type="button" onclick="setSearchMode('buy')">Buy</button>
+              <button class="search-tab" id="rentTab" type="button" onclick="setSearchMode('rent')">Rent</button>
+            </div>
+            <label class="search-label" for="searchArea">Where are you looking?</label>
+            <select class="search-select" id="searchArea">
+              <option value="mississauga">Mississauga</option>
+              <option value="toronto">Toronto</option>
+              <option value="oakville">Oakville</option>
+              <option value="brampton">Brampton</option>
+              <option value="milton">Milton</option>
+              <option value="burlington">Burlington</option>
+            </select>
+            <button class="btn gold search-submit" type="button" onclick="runPropertySearch()">Search MLS® listings</button>
+            <div class="search-note">Opens current REALTOR.ca listings with Buy or Rent already selected.</div>
+          </div>
         </div>
-        <div class="service-detail-grid">
-          <article class="service-detail-card" id="buy">
-            <div><div class="num">01</div><h3>Buying</h3><p>A focused search built around your priorities, budget, timing, and long-term goals.</p><div class="service-points"><span>Property search strategy</span><span>Offer preparation &amp; negotiation</span><span>Guidance from search to closing</span></div></div>
-            <a class="btn dark" href="#contact">Start your home search</a>
-          </article>
-          <article class="service-detail-card" id="sell">
-            <div><div class="num">02</div><h3>Selling</h3><p>Thoughtful preparation and positioning designed to present your property with confidence.</p><div class="service-points"><span>Pricing &amp; market positioning</span><span>Presentation and launch planning</span><span>Offer review &amp; negotiation</span></div></div>
-            <a class="btn dark" href="#contact">Discuss your sale</a>
-          </article>
-          <article class="service-detail-card" id="communities">
-            <div><div class="num">03</div><h3>Communities</h3><p>Local insight to help match your real-estate goals with the neighbourhood and lifestyle that fit you.</p><div class="service-points"><span>Toronto &amp; surrounding areas</span><span>Neighbourhood-focused guidance</span><span>Move planning based on your priorities</span></div></div>
-            <a class="btn dark" href="#contact">Explore communities</a>
-          </article>
+
+        <div class="sell-strip" id="sell">
+          <div class="sell-photo"><img src="pictures/abir_photo_2.png" alt="Abir Hlal in a luxury interior"></div>
+          <div class="sell-copy"><div><div class="eyebrow">Selling</div><h3>Thinking about selling?</h3><p>Start with a clear pricing and launch strategy.</p></div><a class="btn dark" href="#contact">Talk to Abir</a></div>
         </div>
       </div>
     </section>
@@ -357,6 +390,27 @@
     document.getElementById('playVideo').addEventListener('click',()=>{dialog.showModal();video.currentTime=0;video.play().catch(()=>{})});
     document.getElementById('closeVideo').addEventListener('click',()=>{video.pause();dialog.close()});
     dialog.addEventListener('click',e=>{if(e.target===dialog){video.pause();dialog.close()}});
+    let propertyMode='buy';
+    const propertyUrls={
+      buy:{
+        mississauga:'https://www.realtor.ca/on/mississauga/real-estate',
+        toronto:'https://www.realtor.ca/on/toronto/toronto/real-estate',
+        oakville:'https://www.realtor.ca/on/oakville/real-estate',
+        brampton:'https://www.realtor.ca/on/brampton/real-estate',
+        milton:'https://www.realtor.ca/on/milton/real-estate',
+        burlington:'https://www.realtor.ca/on/burlington/real-estate'
+      },
+      rent:{
+        mississauga:'https://www.realtor.ca/on/mississauga/rentals',
+        toronto:'https://www.realtor.ca/on/toronto/rentals',
+        oakville:'https://www.realtor.ca/on/oakville/rentals',
+        brampton:'https://www.realtor.ca/on/brampton/rentals',
+        milton:'https://www.realtor.ca/on/milton/rentals',
+        burlington:'https://www.realtor.ca/on/burlington/rentals'
+      }
+    };
+    function setSearchMode(mode){propertyMode=mode;const b=document.getElementById('buyTab'),r=document.getElementById('rentTab');if(b&&r){b.classList.toggle('active',mode==='buy');r.classList.toggle('active',mode==='rent')}}
+    function runPropertySearch(){const area=document.getElementById('searchArea').value;window.open(propertyUrls[propertyMode][area],'_blank','noopener')}
     document.getElementById('year').textContent=new Date().getFullYear();
   </script>
 </body>
