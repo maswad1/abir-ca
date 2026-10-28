@@ -1,0 +1,77 @@
+name: Add Testimonials Section
+'on':
+  push:
+    paths:
+      - '.github/workflows/add-testimonials-section.yml'
+permissions:
+  contents: write
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add testimonial section shell
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+
+          s = s.replace(
+              '<a href="#awards">Awards</a><a href="#contact">Contact</a>',
+              '<a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>'
+          )
+
+          css_anchor = '    .cta{padding:36px 0;background:#0a0a0b;border-top:1px solid #151517}'
+          testimonials_css = """    .testimonials{padding:64px 0;background:#0b0b0c;border-top:1px solid var(--line)}
+    .testimonials-head{text-align:center;max-width:760px;margin:0 auto 30px}
+    .testimonials-head h2{margin:10px 0 14px}
+    .testimonials-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+    .testimonial-shell{max-width:900px;margin:0 auto;padding:42px;border:1px solid #2b2925;background:linear-gradient(145deg,#171719,#101011);position:relative}
+    .testimonial-shell:before{content:\"“\";position:absolute;top:10px;left:24px;font:80px/1 var(--serif);color:rgba(201,166,107,.18)}
+    .testimonial-placeholder{text-align:center;padding:18px 10px}
+    .testimonial-placeholder strong{display:block;font:600 27px/1.2 var(--serif);color:var(--ink);margin-bottom:12px}
+    .testimonial-placeholder span{display:block;color:var(--muted);font-size:14px;line-height:1.7;max-width:600px;margin:0 auto}
+    .testimonial-placeholder .btn{margin-top:24px}
+
+"""
+          if '.testimonials{' not in s:
+              s = s.replace(css_anchor, testimonials_css + css_anchor)
+
+          section_anchor = '    <section class="cta" id="contact">'
+          testimonials_html = """    <section class="testimonials" id="testimonials">
+      <div class="wrap">
+        <div class="testimonials-head">
+          <div class="eyebrow">Client Testimonials</div>
+          <h2>What clients say.</h2>
+          <p>Real experiences matter. This section is reserved for verified feedback from Abir's buyers and sellers.</p>
+        </div>
+        <div class="testimonial-shell">
+          <div class="testimonial-placeholder">
+            <strong>Client stories are being gathered.</strong>
+            <span>Verified testimonials will be added here as they are collected, so every quote shown on Abir.ca reflects an authentic client experience.</span>
+            <a class="btn dark" href="mailto:abir.realtor@abir.ca?subject=Client%20Testimonial%20for%20Abir.ca">Share your experience</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+"""
+          if 'id="testimonials"' not in s:
+              s = s.replace(section_anchor, testimonials_html + section_anchor)
+
+          s = s.replace(
+              '      .awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}',
+              '      .awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.testimonials{padding:48px 0}.testimonial-shell{padding:32px 22px}.testimonial-placeholder .btn{width:100%}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}'
+          )
+
+          p.write_text(s)
+          PY
+      - name: Commit update and remove updater
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/add-testimonials-section.yml
+          git add index.html .github/workflows/add-testimonials-section.yml
+          git commit -m "Add client testimonials section"
+          git push
