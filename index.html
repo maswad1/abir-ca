@@ -22,6 +22,8 @@
     header{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.03)}
     .nav{height:78px;display:flex;align-items:center;gap:32px}
     .brand{display:flex;flex-direction:column;line-height:.92;min-width:235px}
+    .brand-mark{display:flex;align-items:center;gap:9px}
+    .brand-logo{width:38px;height:25px;object-fit:contain;flex:0 0 auto}
     .brand b{font:400 29px/1 var(--serif);letter-spacing:.04em}
     .brand small{margin-top:7px;color:var(--gold);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
     .links{display:flex;align-items:center;justify-content:center;gap:38px;flex:1;color:#d7d3ce;font-size:13px}
@@ -85,7 +87,9 @@
     .cta-grid{display:flex;align-items:center;justify-content:space-between;gap:30px}
     .cta h3{font-size:36px}.cta p{color:#aaa59f;margin:5px 0 0;font:16px var(--serif)}
     footer{padding:25px 0 34px;border-top:1px solid #151517;color:#77736f;font-size:11px}
-    .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer-brand{display:flex;align-items:center;gap:12px}
+    .footer-logo{width:44px;height:auto}
 
     dialog{width:min(900px,92vw);padding:0;border:1px solid #3a342b;background:#050505;border-radius:16px;box-shadow:0 30px 100px rgba(0,0,0,.7)}
     dialog::backdrop{background:rgba(0,0,0,.84)}
@@ -104,7 +108,7 @@
     }
     @media(max-width:620px){
       .wrap{width:calc(100% - 28px)}.nav{height:68px}.mobile-links{top:68px}
-      .brand b{font-size:25px}.brand small{font-size:8px}
+      .brand b{font-size:25px}.brand small{font-size:8px}.brand-logo{width:32px;height:21px}
       .hero{padding:18px 0 24px}.hero-photo{min-height:390px;border-radius:14px}
       .hero-copy{padding:34px 24px}.lead{font-size:23px}.sub{font-size:14px}.btn{width:100%}
       .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.about{padding:30px 0}
@@ -117,7 +121,7 @@
 <body>
   <header>
     <div class="wrap nav">
-      <a class="brand" href="#home" aria-label="Abir.ca home"><b>ABIR.CA</b><small>ABIR HLAL | REAL ESTATE</small></a>
+      <a class="brand" href="#home" aria-label="Abir.ca home"><span class="brand-mark"><img class="brand-logo" src="pictures/abir_logo_ah.png" alt="" aria-hidden="true"><b>ABIR.CA</b></span><small>ABIR HLAL | REAL ESTATE</small></a>
       <nav class="links" aria-label="Main navigation">
         <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#contact">Contact</a>
       </nav>
@@ -190,7 +194,7 @@
     </section>
   </main>
 
-  <footer><div class="wrap foot"><span>© <span id="year"></span> Abir Hlal Real Estate.</span><span>ABIR.CA</span></div></footer>
+  <footer><div class="wrap foot"><span class="footer-brand"><img class="footer-logo" src="pictures/abir_logo_ah.png" alt="" aria-hidden="true"><span>© <span id="year"></span> Abir Hlal Real Estate.</span></span><span>ABIR.CA</span></div></footer>
 
   <dialog id="videoDialog" aria-label="Abir video introduction">
     <div class="video-shell"><button class="close" id="closeVideo" aria-label="Close video">×</button><video id="introVideo" controls playsinline preload="metadata"><source src="video/Video1.mp4" type="video/mp4"></video></div>
