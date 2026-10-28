@@ -16,76 +16,42 @@ jobs:
           from pathlib import Path
           p = Path('index.html')
           s = p.read_text()
-
-          s = s.replace(
-              '<a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>',
-              '<a href="#testimonials">Testimonials</a><a href="#events">Events</a><a href="#contact">Contact</a>'
-          )
-
-          s = s.replace(
-              '.links{display:flex;align-items:center;justify-content:center;gap:38px;flex:1;color:#d7d3ce;font-size:13px}',
-              '.links{display:flex;align-items:center;justify-content:center;gap:27px;flex:1;color:#d7d3ce;font-size:12px}'
-          )
-
+          s = s.replace('<a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>', '<a href="#testimonials">Testimonials</a><a href="#events">Events</a><a href="#contact">Contact</a>')
+          s = s.replace('.links{display:flex;align-items:center;justify-content:center;gap:38px;flex:1;color:#d7d3ce;font-size:13px}', '.links{display:flex;align-items:center;justify-content:center;gap:27px;flex:1;color:#d7d3ce;font-size:12px}')
           css_anchor = '    .cta{padding:36px 0;background:#0a0a0b;border-top:1px solid #151517}'
-          events_css = """    .events{padding:68px 0;background:#101012;border-top:1px solid var(--line)}
-    .events-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:32px}
-    .events-head h2{margin:10px 0 0}
-    .events-head p{max-width:500px;color:var(--muted);font-size:14px;line-height:1.7;margin:0}
-    .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .event-card{min-height:280px;padding:28px;border:1px solid #2b2925;background:linear-gradient(145deg,#18181a,#101011);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-    .event-card:after{content:\"\";position:absolute;width:150px;height:150px;border:1px solid rgba(201,166,107,.16);border-radius:50%;right:-55px;top:-55px}
-    .event-number{font:500 14px/1 var(--serif);color:var(--gold);letter-spacing:.12em}
-    .event-icon{font:500 56px/1 var(--serif);color:rgba(223,191,134,.82);margin:36px 0 22px}
-    .event-card h3{font-size:26px;margin-bottom:10px}
-    .event-card p{color:var(--muted);font-size:13px;line-height:1.65;margin:0;max-width:300px}
-    .events-note{margin-top:22px;padding-top:18px;border-top:1px solid #242426;color:#817b75;font-size:11px;line-height:1.6}
-
-"""
+          events_css = ('    .events{padding:68px 0;background:#101012;border-top:1px solid var(--line)}\n'
+                        '    .events-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:32px}\n'
+                        '    .events-head h2{margin:10px 0 0}\n'
+                        '    .events-head p{max-width:500px;color:var(--muted);font-size:14px;line-height:1.7;margin:0}\n'
+                        '    .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}\n'
+                        '    .event-card{min-height:280px;padding:28px;border:1px solid #2b2925;background:linear-gradient(145deg,#18181a,#101011);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}\n'
+                        '    .event-card:after{content:"";position:absolute;width:150px;height:150px;border:1px solid rgba(201,166,107,.16);border-radius:50%;right:-55px;top:-55px}\n'
+                        '    .event-number{font:500 14px/1 var(--serif);color:var(--gold);letter-spacing:.12em}\n'
+                        '    .event-icon{font:500 56px/1 var(--serif);color:rgba(223,191,134,.82);margin:36px 0 22px}\n'
+                        '    .event-card h3{font-size:26px;margin-bottom:10px}\n'
+                        '    .event-card p{color:var(--muted);font-size:13px;line-height:1.65;margin:0;max-width:300px}\n'
+                        '    .events-note{margin-top:22px;padding-top:18px;border-top:1px solid #242426;color:#817b75;font-size:11px;line-height:1.6}\n\n')
           if '.events{' not in s:
               s = s.replace(css_anchor, events_css + css_anchor)
-
           section_anchor = '    <section class="cta" id="contact">'
-          events_html = """    <section class="events" id="events">
-      <div class="wrap">
-        <div class="events-head">
-          <div>
-            <div class="eyebrow">Events &amp; Community</div>
-            <h2>Real estate happens beyond the listing.</h2>
-          </div>
-          <p>A dedicated space for Abir's open houses, client milestones, community involvement, and real-estate events.</p>
-        </div>
-        <div class="events-grid">
-          <article class="event-card">
-            <div><div class="event-number">01</div><div class="event-icon">⌂</div></div>
-            <div><h3>Open Houses</h3><p>Property launches, buyer visits, and on-site moments from homes Abir represents.</p></div>
-          </article>
-          <article class="event-card">
-            <div><div class="event-number">02</div><div class="event-icon">✓</div></div>
-            <div><h3>Client Milestones</h3><p>Celebrating successful moves, closings, and meaningful moments with buyers and sellers.</p></div>
-          </article>
-          <article class="event-card">
-            <div><div class="event-number">03</div><div class="event-icon">◎</div></div>
-            <div><h3>Community Events</h3><p>Neighbourhood connections, local gatherings, brokerage events, and community involvement.</p></div>
-          </article>
-        </div>
-        <div class="events-note">Event photography will be added as Abir's photo archive is organized. The layout is already prepared to expand into individual galleries.</div>
-      </div>
-    </section>
-
-"""
+          events_html = ('    <section class="events" id="events">\n'
+                         '      <div class="wrap">\n'
+                         '        <div class="events-head">\n'
+                         '          <div><div class="eyebrow">Events &amp; Community</div><h2>Real estate happens beyond the listing.</h2></div>\n'
+                         '          <p>A dedicated space for Abir\'s open houses, client milestones, community involvement, and real-estate events.</p>\n'
+                         '        </div>\n'
+                         '        <div class="events-grid">\n'
+                         '          <article class="event-card"><div><div class="event-number">01</div><div class="event-icon">⌂</div></div><div><h3>Open Houses</h3><p>Property launches, buyer visits, and on-site moments from homes Abir represents.</p></div></article>\n'
+                         '          <article class="event-card"><div><div class="event-number">02</div><div class="event-icon">✓</div></div><div><h3>Client Milestones</h3><p>Celebrating successful moves, closings, and meaningful moments with buyers and sellers.</p></div></article>\n'
+                         '          <article class="event-card"><div><div class="event-number">03</div><div class="event-icon">◎</div></div><div><h3>Community Events</h3><p>Neighbourhood connections, local gatherings, brokerage events, and community involvement.</p></div></article>\n'
+                         '        </div>\n'
+                         '        <div class="events-note">Event photography will be added as Abir\'s photo archive is organized. The layout is already prepared to expand into individual galleries.</div>\n'
+                         '      </div>\n'
+                         '    </section>\n\n')
           if 'id="events"' not in s:
               s = s.replace(section_anchor, events_html + section_anchor)
-
-          s = s.replace(
-              '      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.awards-grid{grid-template-columns:1fr 1fr}',
-              '      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}.event-card:last-child{grid-column:1/-1}'
-          )
-          s = s.replace(
-              '.testimonial-placeholder .btn{width:100%}.cta-grid{display:block}',
-              '.testimonial-placeholder .btn{width:100%}.events{padding:48px 0}.events-head{display:block}.events-head p{margin-top:14px}.events-grid{grid-template-columns:1fr}.event-card:last-child{grid-column:auto}.event-card{min-height:225px}.cta-grid{display:block}'
-          )
-
+          s = s.replace('      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.awards-grid{grid-template-columns:1fr 1fr}', '      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}.event-card:last-child{grid-column:1/-1}')
+          s = s.replace('.testimonial-placeholder .btn{width:100%}.cta-grid{display:block}', '.testimonial-placeholder .btn{width:100%}.events{padding:48px 0}.events-head{display:block}.events-head p{margin-top:14px}.events-grid{grid-template-columns:1fr}.event-card:last-child{grid-column:auto}.event-card{min-height:225px}.cta-grid{display:block}')
           p.write_text(s)
           PY
       - name: Commit update and remove updater
