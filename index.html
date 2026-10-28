@@ -26,7 +26,7 @@
     .brand-logo{width:38px;height:25px;object-fit:contain;flex:0 0 auto}
     .brand b{font:400 29px/1 var(--serif);letter-spacing:.04em}
     .brand small{margin-top:7px;color:var(--gold);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
-    .links{display:flex;align-items:center;justify-content:center;gap:38px;flex:1;color:#d7d3ce;font-size:13px}
+    .links{display:flex;align-items:center;justify-content:center;gap:27px;flex:1;color:#d7d3ce;font-size:12px}
     .links a{transition:.2s}.links a:hover{color:var(--gold2)}
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:0 28px;border:1px solid var(--gold);font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;transition:.2s;cursor:pointer}
     .btn.gold{background:var(--gold);color:#16120c}.btn.gold:hover{background:var(--gold2)}
@@ -107,6 +107,19 @@
     .testimonial-placeholder span{display:block;color:var(--muted);font-size:14px;line-height:1.7;max-width:600px;margin:0 auto}
     .testimonial-placeholder .btn{margin-top:24px}
 
+    .events{padding:68px 0;background:#101012;border-top:1px solid var(--line)}
+    .events-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:32px}
+    .events-head h2{margin:10px 0 0}
+    .events-head p{max-width:500px;color:var(--muted);font-size:14px;line-height:1.7;margin:0}
+    .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .event-card{min-height:280px;padding:28px;border:1px solid #2b2925;background:linear-gradient(145deg,#18181a,#101011);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .event-card:after{content:"";position:absolute;width:150px;height:150px;border:1px solid rgba(201,166,107,.16);border-radius:50%;right:-55px;top:-55px}
+    .event-number{font:500 14px/1 var(--serif);color:var(--gold);letter-spacing:.12em}
+    .event-icon{font:500 56px/1 var(--serif);color:rgba(223,191,134,.82);margin:36px 0 22px}
+    .event-card h3{font-size:26px;margin-bottom:10px}
+    .event-card p{color:var(--muted);font-size:13px;line-height:1.65;margin:0;max-width:300px}
+    .events-note{margin-top:22px;padding-top:18px;border-top:1px solid #242426;color:#817b75;font-size:11px;line-height:1.6}
+
     .cta{padding:36px 0;background:#0a0a0b;border-top:1px solid #151517}
     .cta-grid{display:flex;align-items:center;justify-content:space-between;gap:30px}
     .cta h3{font-size:36px}.cta p{color:#aaa59f;margin:5px 0 0;font:16px var(--serif)}
@@ -126,7 +139,7 @@
       .hero-grid{grid-template-columns:1fr}.hero-photo{min-height:520px}.hero-copy{padding:40px 34px}
       .pillar-grid{grid-template-columns:1fr 1fr;padding:18px 0}
       .about-grid{grid-template-columns:1fr 1fr}.about-copy{padding:10px 0}.about-main{height:430px}
-      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.awards-grid{grid-template-columns:1fr 1fr}
+      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}.event-card:last-child{grid-column:1/-1}
       .mobile-links{display:none;position:absolute;left:0;right:0;top:78px;background:#0d0d0f;border-top:1px solid #262626;padding:18px 24px 24px}
       .mobile-links.open{display:grid;gap:18px}.mobile-links a{font-size:15px;color:#e7e1da}
     }
@@ -138,7 +151,7 @@
       .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.about{padding:30px 0}
       .about-grid{grid-template-columns:1fr}.about-main{height:440px}.tile-frame{height:350px}
       .showcase{padding:40px 0}.live-listings{padding:40px 0}.live-listings-head{display:block}.live-listings-head p{margin-top:14px}.listings-frame-wrap,.listings-frame{min-height:720px;height:720px}.listings-fallback{display:block}.listings-fallback .btn{margin-top:14px}.showcase-head{display:block}.showcase-head p{margin-top:14px}.feature{min-height:460px}
-      .awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.testimonials{padding:48px 0}.testimonial-shell{padding:32px 22px}.testimonial-placeholder .btn{width:100%}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
+      .awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.testimonials{padding:48px 0}.testimonial-shell{padding:32px 22px}.testimonial-placeholder .btn{width:100%}.events{padding:48px 0}.events-head{display:block}.events-head p{margin-top:14px}.events-grid{grid-template-columns:1fr}.event-card:last-child{grid-column:auto}.event-card{min-height:225px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
     }
   </style>
 </head>
@@ -147,13 +160,13 @@
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="Abir.ca home"><span class="brand-mark"><img class="brand-logo" src="pictures/abir_logo_ah.png" alt="" aria-hidden="true"><b>ABIR.CA</b></span><small>ABIR HLAL | REAL ESTATE</small></a>
       <nav class="links" aria-label="Main navigation">
-        <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>
+        <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#events">Events</a><a href="#contact">Contact</a>
       </nav>
       <a class="btn gold" href="#contact">Get in touch</a>
       <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     </div>
     <nav class="mobile-links" id="mobileLinks" aria-label="Mobile navigation">
-      <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#events">Events</a><a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -258,6 +271,21 @@
             <a class="btn dark" href="mailto:abir.realtor@abir.ca?subject=Client%20Testimonial%20for%20Abir.ca">Share your experience</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="events" id="events">
+      <div class="wrap">
+        <div class="events-head">
+          <div><div class="eyebrow">Events &amp; Community</div><h2>Real estate happens beyond the listing.</h2></div>
+          <p>A dedicated space for Abir's open houses, client milestones, community involvement, and real-estate events.</p>
+        </div>
+        <div class="events-grid">
+          <article class="event-card"><div><div class="event-number">01</div><div class="event-icon">⌂</div></div><div><h3>Open Houses</h3><p>Property launches, buyer visits, and on-site moments from homes Abir represents.</p></div></article>
+          <article class="event-card"><div><div class="event-number">02</div><div class="event-icon">✓</div></div><div><h3>Client Milestones</h3><p>Celebrating successful moves, closings, and meaningful moments with buyers and sellers.</p></div></article>
+          <article class="event-card"><div><div class="event-number">03</div><div class="event-icon">◎</div></div><div><h3>Community Events</h3><p>Neighbourhood connections, local gatherings, brokerage events, and community involvement.</p></div></article>
+        </div>
+        <div class="events-note">Event photography will be added as Abir's photo archive is organized. The layout is already prepared to expand into individual galleries.</div>
       </div>
     </section>
 
