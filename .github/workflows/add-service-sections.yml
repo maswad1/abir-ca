@@ -1,0 +1,83 @@
+name: Add Service Sections
+'on':
+  push:
+    paths:
+      - '.github/workflows/add-service-sections.yml'
+permissions:
+  contents: write
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add Buy Sell Communities sections
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+
+          css_anchor = '    .about{padding:52px 0 64px}'
+          css = '''    .services-detail{padding:70px 0;background:#0e0e10;border-top:1px solid var(--line)}
+    .services-detail-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:34px}
+    .services-detail-head h2{margin:10px 0 0}
+    .services-detail-head p{max-width:500px;color:var(--muted);font-size:14px;line-height:1.7;margin:0}
+    .service-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .service-detail-card{padding:30px;border:1px solid #2a2825;background:linear-gradient(145deg,#18181a,#101011);min-height:330px;display:flex;flex-direction:column;justify-content:space-between}
+    .service-detail-card .num{font:500 13px/1 var(--serif);color:var(--gold);letter-spacing:.12em}
+    .service-detail-card h3{font-size:30px;margin:24px 0 14px}
+    .service-detail-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+    .service-points{display:grid;gap:9px;margin-top:24px;color:#d7d0c8;font-size:12px}
+    .service-points span{padding-top:9px;border-top:1px solid #292929}
+    .service-detail-card .btn{margin-top:28px;align-self:flex-start}
+
+'''
+          if '.services-detail{' not in s:
+              s = s.replace(css_anchor, css + css_anchor)
+
+          s = s.replace('<div class="pillar" id="buy"><b>Buy</b><span>Find your perfect home</span></div>', '<div class="pillar"><a href="#buy"><b>Buy</b><span>Find your perfect home</span></a></div>')
+          s = s.replace('<div class="pillar" id="sell"><b>Sell</b><span>Get top value</span></div>', '<div class="pillar"><a href="#sell"><b>Sell</b><span>Get top value</span></a></div>')
+          s = s.replace('<div class="pillar" id="communities"><b>Local expertise</b><span>Toronto &amp; surrounding areas</span></div>', '<div class="pillar"><a href="#communities"><b>Local expertise</b><span>Toronto &amp; surrounding areas</span></a></div>')
+
+          about_anchor = '    <section class="about" id="about">'
+          html = '''    <section class="services-detail" aria-label="Real estate services">
+      <div class="wrap">
+        <div class="services-detail-head">
+          <div><div class="eyebrow">How Abir Helps</div><h2>Clear guidance for every move.</h2></div>
+          <p>Whether buying, selling, or choosing the right community, Abir brings preparation, market insight, and personal guidance to each step.</p>
+        </div>
+        <div class="service-detail-grid">
+          <article class="service-detail-card" id="buy">
+            <div><div class="num">01</div><h3>Buying</h3><p>A focused search built around your priorities, budget, timing, and long-term goals.</p><div class="service-points"><span>Property search strategy</span><span>Offer preparation &amp; negotiation</span><span>Guidance from search to closing</span></div></div>
+            <a class="btn dark" href="#contact">Start your home search</a>
+          </article>
+          <article class="service-detail-card" id="sell">
+            <div><div class="num">02</div><h3>Selling</h3><p>Thoughtful preparation and positioning designed to present your property with confidence.</p><div class="service-points"><span>Pricing &amp; market positioning</span><span>Presentation and launch planning</span><span>Offer review &amp; negotiation</span></div></div>
+            <a class="btn dark" href="#contact">Discuss your sale</a>
+          </article>
+          <article class="service-detail-card" id="communities">
+            <div><div class="num">03</div><h3>Communities</h3><p>Local insight to help match your real-estate goals with the neighbourhood and lifestyle that fit you.</p><div class="service-points"><span>Toronto &amp; surrounding areas</span><span>Neighbourhood-focused guidance</span><span>Move planning based on your priorities</span></div></div>
+            <a class="btn dark" href="#contact">Explore communities</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+'''
+          if 'class="services-detail"' not in s:
+              s = s.replace(about_anchor, html + about_anchor)
+
+          s = s.replace('.about-grid{grid-template-columns:1fr 1fr}.about-copy', '.service-detail-grid{grid-template-columns:1fr 1fr}.service-detail-card:last-child{grid-column:1/-1}.about-grid{grid-template-columns:1fr 1fr}.about-copy')
+          s = s.replace('.pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.about{padding:30px 0}', '.pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.services-detail{padding:48px 0}.services-detail-head{display:block}.services-detail-head p{margin-top:14px}.service-detail-grid{grid-template-columns:1fr}.service-detail-card:last-child{grid-column:auto}.service-detail-card{min-height:290px}.about{padding:30px 0}')
+          s = s.replace('.pillar span{display:block;', '.pillar a{display:block;color:inherit}.pillar span{display:block;')
+
+          p.write_text(s)
+          PY
+      - name: Commit update and remove updater
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/add-service-sections.yml
+          git add index.html .github/workflows/add-service-sections.yml
+          git commit -m "Build full Buy Sell and Communities sections"
+          git push
