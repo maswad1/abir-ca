@@ -96,6 +96,17 @@
     .award-meta{margin-top:18px;color:#8f8981;font-size:11px;line-height:1.55;text-transform:uppercase;letter-spacing:.05em}
     .awards-note{margin-top:22px;color:#77716a;font-size:11px;line-height:1.6}
 
+    .testimonials{padding:64px 0;background:#0b0b0c;border-top:1px solid var(--line)}
+    .testimonials-head{text-align:center;max-width:760px;margin:0 auto 30px}
+    .testimonials-head h2{margin:10px 0 14px}
+    .testimonials-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+    .testimonial-shell{max-width:900px;margin:0 auto;padding:42px;border:1px solid #2b2925;background:linear-gradient(145deg,#171719,#101011);position:relative}
+    .testimonial-shell:before{content:"“";position:absolute;top:10px;left:24px;font:80px/1 var(--serif);color:rgba(201,166,107,.18)}
+    .testimonial-placeholder{text-align:center;padding:18px 10px}
+    .testimonial-placeholder strong{display:block;font:600 27px/1.2 var(--serif);color:var(--ink);margin-bottom:12px}
+    .testimonial-placeholder span{display:block;color:var(--muted);font-size:14px;line-height:1.7;max-width:600px;margin:0 auto}
+    .testimonial-placeholder .btn{margin-top:24px}
+
     .cta{padding:36px 0;background:#0a0a0b;border-top:1px solid #151517}
     .cta-grid{display:flex;align-items:center;justify-content:space-between;gap:30px}
     .cta h3{font-size:36px}.cta p{color:#aaa59f;margin:5px 0 0;font:16px var(--serif)}
@@ -127,7 +138,7 @@
       .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.about{padding:30px 0}
       .about-grid{grid-template-columns:1fr}.about-main{height:440px}.tile-frame{height:350px}
       .showcase{padding:40px 0}.live-listings{padding:40px 0}.live-listings-head{display:block}.live-listings-head p{margin-top:14px}.listings-frame-wrap,.listings-frame{min-height:720px;height:720px}.listings-fallback{display:block}.listings-fallback .btn{margin-top:14px}.showcase-head{display:block}.showcase-head p{margin-top:14px}.feature{min-height:460px}
-      .awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
+      .awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.testimonials{padding:48px 0}.testimonial-shell{padding:32px 22px}.testimonial-placeholder .btn{width:100%}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
     }
   </style>
 </head>
@@ -136,13 +147,13 @@
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="Abir.ca home"><span class="brand-mark"><img class="brand-logo" src="pictures/abir_logo_ah.png" alt="" aria-hidden="true"><b>ABIR.CA</b></span><small>ABIR HLAL | REAL ESTATE</small></a>
       <nav class="links" aria-label="Main navigation">
-        <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
+        <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>
       </nav>
       <a class="btn gold" href="#contact">Get in touch</a>
       <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     </div>
     <nav class="mobile-links" id="mobileLinks" aria-label="Mobile navigation">
-      <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="#about">About</a><a href="https://abirhlal.myrealtyonegroup.com/my-featured-listings" target="_blank" rel="noopener">Listings</a><a href="#buy">Buy</a><a href="#sell">Sell</a><a href="#communities">Communities</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -230,6 +241,23 @@
           </article>
         </div>
         <div class="awards-note">Career recognition shown above reflects achievements earned across Abir Hlal's professional history and does not imply current affiliation with prior brokerages.</div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <div class="wrap">
+        <div class="testimonials-head">
+          <div class="eyebrow">Client Testimonials</div>
+          <h2>What clients say.</h2>
+          <p>Real experiences matter. This section is reserved for verified feedback from Abir's buyers and sellers.</p>
+        </div>
+        <div class="testimonial-shell">
+          <div class="testimonial-placeholder">
+            <strong>Client stories are being gathered.</strong>
+            <span>Verified testimonials will be added here as they are collected, so every quote shown on Abir.ca reflects an authentic client experience.</span>
+            <a class="btn dark" href="mailto:abir.realtor@abir.ca?subject=Client%20Testimonial%20for%20Abir.ca">Share your experience</a>
+          </div>
+        </div>
       </div>
     </section>
 
