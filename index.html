@@ -150,7 +150,7 @@
       .links,.nav>.btn{display:none}.menu{display:block}.brand{min-width:auto}
       .hero-grid{grid-template-columns:1fr}.hero-photo{min-height:520px}.hero-copy{padding:40px 34px}
       .pillar-grid{grid-template-columns:1fr 1fr;padding:18px 0}
-      .about-grid{grid-template-columns:1fr 1fr}.about-copy{padding:10px 0}.about-main{height:430px}
+      .service-detail-grid{grid-template-columns:1fr 1fr}.service-detail-card:last-child{grid-column:1/-1}.about-grid{grid-template-columns:1fr 1fr}.about-copy{padding:10px 0}.about-main{height:430px}
       .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.activity-grid{grid-template-columns:1fr 1fr}.activity-card:last-child{grid-column:1/-1}.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}.event-card:last-child{grid-column:1/-1}
       .mobile-links{display:none;position:absolute;left:0;right:0;top:78px;background:#0d0d0f;border-top:1px solid #262626;padding:18px 24px 24px}
       .mobile-links.open{display:grid;gap:18px}.mobile-links a{font-size:15px;color:#e7e1da}
@@ -160,7 +160,7 @@
       .brand b{font-size:25px}.brand small{font-size:8px}.brand-logo{width:32px;height:21px}
       .hero{padding:18px 0 24px}.hero-photo{min-height:390px;border-radius:14px}
       .hero-copy{padding:34px 24px}.lead{font-size:23px}.sub{font-size:14px}.btn{width:100%}
-      .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.about{padding:30px 0}
+      .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.services-detail{padding:48px 0}.services-detail-head{display:block}.services-detail-head p{margin-top:14px}.service-detail-grid{grid-template-columns:1fr}.service-detail-card:last-child{grid-column:auto}.service-detail-card{min-height:290px}.about{padding:30px 0}
       .about-grid{grid-template-columns:1fr}.about-main{height:440px}.tile-frame{height:350px}
       .showcase{padding:40px 0}.live-listings{padding:40px 0}.live-listings-head{display:block}.live-listings-head p{margin-top:14px}.listings-frame-wrap,.listings-frame{min-height:720px;height:720px}.listings-fallback{display:block}.listings-fallback .btn{margin-top:14px}.showcase-head{display:block}.showcase-head p{margin-top:14px}.feature{min-height:460px}
       .activity{padding:48px 0}.activity-head{display:block}.activity-head p{margin-top:14px}.activity-grid{grid-template-columns:1fr}.activity-card:last-child{grid-column:auto}.activity-card{min-height:220px}.awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.testimonials{padding:48px 0}.testimonial-shell{padding:32px 22px}.testimonial-placeholder .btn{width:100%}.events{padding:48px 0}.events-head{display:block}.events-head p{margin-top:14px}.events-grid{grid-template-columns:1fr}.event-card:last-child{grid-column:auto}.event-card{min-height:225px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
@@ -198,10 +198,33 @@
 
     <section class="pillars" aria-label="Services summary">
       <div class="wrap pillar-grid">
-        <div class="pillar" id="buy"><b>Buy</b><span>Find your perfect home</span></div>
-        <div class="pillar" id="sell"><b>Sell</b><span>Get top value</span></div>
+        <div class="pillar"><a href="#buy"><b>Buy</b><span>Find your perfect home</span></a></div>
+        <div class="pillar"><a href="#sell"><b>Sell</b><span>Get top value</span></a></div>
         <div class="pillar"><b>Invest</b><span>Build your future</span></div>
-        <div class="pillar" id="communities"><b>Local expertise</b><span>Toronto &amp; surrounding areas</span></div>
+        <div class="pillar"><a href="#communities"><b>Local expertise</b><span>Toronto &amp; surrounding areas</span></a></div>
+      </div>
+    </section>
+
+    <section class="services-detail" aria-label="Real estate services">
+      <div class="wrap">
+        <div class="services-detail-head">
+          <div><div class="eyebrow">How Abir Helps</div><h2>Clear guidance for every move.</h2></div>
+          <p>Whether buying, selling, or choosing the right community, Abir brings preparation, market insight, and personal guidance to each step.</p>
+        </div>
+        <div class="service-detail-grid">
+          <article class="service-detail-card" id="buy">
+            <div><div class="num">01</div><h3>Buying</h3><p>A focused search built around your priorities, budget, timing, and long-term goals.</p><div class="service-points"><span>Property search strategy</span><span>Offer preparation &amp; negotiation</span><span>Guidance from search to closing</span></div></div>
+            <a class="btn dark" href="#contact">Start your home search</a>
+          </article>
+          <article class="service-detail-card" id="sell">
+            <div><div class="num">02</div><h3>Selling</h3><p>Thoughtful preparation and positioning designed to present your property with confidence.</p><div class="service-points"><span>Pricing &amp; market positioning</span><span>Presentation and launch planning</span><span>Offer review &amp; negotiation</span></div></div>
+            <a class="btn dark" href="#contact">Discuss your sale</a>
+          </article>
+          <article class="service-detail-card" id="communities">
+            <div><div class="num">03</div><h3>Communities</h3><p>Local insight to help match your real-estate goals with the neighbourhood and lifestyle that fit you.</p><div class="service-points"><span>Toronto &amp; surrounding areas</span><span>Neighbourhood-focused guidance</span><span>Move planning based on your priorities</span></div></div>
+            <a class="btn dark" href="#contact">Explore communities</a>
+          </article>
+        </div>
       </div>
     </section>
 
