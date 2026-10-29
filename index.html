@@ -144,10 +144,28 @@
     .award-row small{display:block;color:#77716a;font-size:10px;line-height:1.5;margin-top:5px;letter-spacing:.035em;text-transform:uppercase}
     .awards-note{margin-top:18px;color:#6f6962;font-size:10px;line-height:1.6}
 
-
-    .cta{padding:36px 0;background:#0a0a0b;border-top:1px solid #151517}
-    .cta-grid{display:flex;align-items:center;justify-content:space-between;gap:30px}
-    .cta h3{font-size:36px}.cta p{color:#aaa59f;margin:5px 0 0;font:16px var(--serif)}
+    .contact{padding:72px 0;background:#0a0a0b;border-top:1px solid #151517}
+    .contact-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:28px;align-items:stretch}
+    .contact-intro{padding:40px;border:1px solid #2d2923;background:linear-gradient(145deg,#171719,#0d0d0e)}
+    .contact-intro h3{font-size:42px;line-height:1.02;margin:14px 0 18px}
+    .contact-intro>p{color:var(--muted);font-size:14px;line-height:1.7;margin:0;max-width:450px}
+    .contact-actions{display:grid;gap:12px;margin-top:30px}
+    .contact-link{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;border:1px solid #363129;background:#101012;transition:.2s}
+    .contact-link:hover{border-color:var(--gold);background:#15130f}
+    .contact-link span{color:#8f8981;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+    .contact-link strong{color:var(--gold2);font-size:15px;font-weight:700;text-align:right}
+    .contact-form{padding:36px;border:1px solid #2d2923;background:#111113}
+    .contact-form h3{font-size:32px;margin-bottom:24px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .form-field{display:grid;gap:8px;color:#d8d2ca;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .form-field.wide{grid-column:1/-1}
+    .form-field input,.form-field select,.form-field textarea{width:100%;border:1px solid #38342f;background:#0b0b0c;color:var(--ink);padding:13px 14px;font:14px var(--sans);outline:none;border-radius:0}
+    .form-field input,.form-field select{height:48px}
+    .form-field textarea{min-height:140px;resize:vertical}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold)}
+    .contact-form .btn{margin-top:20px}
+    .form-note{margin:12px 0 0;color:#77716a;font-size:10px;line-height:1.5}
+    .form-honeypot{display:none!important}
     footer{padding:25px 0 34px;border-top:1px solid #151517;color:#77736f;font-size:11px}
     .foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
     .footer-brand{display:flex;align-items:center;gap:12px}
@@ -164,7 +182,7 @@
       .hero-grid{grid-template-columns:1fr}.hero-photo{min-height:520px}.hero-copy{padding:40px 34px}
       .pillar-grid{grid-template-columns:1fr 1fr;padding:18px 0}
       .home-search-shell{grid-template-columns:1fr}.search-photo{min-height:380px}.sell-strip{grid-template-columns:240px 1fr}.about-grid{grid-template-columns:1fr 1fr}.about-copy{padding:10px 0}.about-main{height:430px}
-      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.activity-grid{grid-template-columns:1fr 1fr}.activity-photo:first-child{grid-column:1/-1;min-height:460px}.awards-layout{grid-template-columns:1fr}.awards-feature{min-height:390px}.awards-list{min-height:520px}
+      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.activity-grid{grid-template-columns:1fr 1fr}.activity-photo:first-child{grid-column:1/-1;min-height:460px}.awards-layout{grid-template-columns:1fr}.awards-feature{min-height:390px}.awards-list{min-height:520px}.contact-grid{grid-template-columns:1fr}
       .mobile-links{display:none;position:absolute;left:0;right:0;top:78px;background:#0d0d0f;border-top:1px solid #262626;padding:18px 24px 24px}
       .mobile-links.open{display:grid;gap:18px}.mobile-links a{font-size:15px;color:#e7e1da}
     }
@@ -176,7 +194,7 @@
       .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.home-search{padding:42px 0}.home-search-shell{grid-template-columns:1fr}.search-photo{min-height:330px}.search-panel{padding:30px 24px}.sell-strip{grid-template-columns:1fr}.sell-photo{min-height:260px}.sell-copy{padding:28px 24px;display:block}.sell-copy .btn{margin-top:20px}.about{padding:30px 0}
       .about-grid{grid-template-columns:1fr}.about-main{height:440px}.tile-frame{height:350px}
       .showcase{padding:40px 0}.live-listings{padding:40px 0}.live-listings-head{display:block}.live-listings-head p{margin-top:14px}.listings-frame-wrap,.listings-frame{min-height:720px;height:720px}.listings-fallback{display:block}.listings-fallback .btn{margin-top:14px}.showcase-head{display:block}.showcase-head p{margin-top:14px}.feature{min-height:460px}
-      .activity{padding:48px 0}.activity-head{display:block}.activity-head p{margin-top:14px}.activity-grid{grid-template-columns:1fr}.activity-photo:first-child{grid-column:auto;min-height:360px}.activity-photo{min-height:330px}.awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards{padding:48px 0}.awards-layout{grid-template-columns:1fr}.awards-feature{min-height:360px;padding:30px 24px}.awards-watermark{width:68%;right:-38px;top:28px}.awards-list{display:block;min-height:0}.award-row{grid-template-columns:1fr;gap:10px;padding:24px}.award-rank{font-size:38px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
+      .activity{padding:48px 0}.activity-head{display:block}.activity-head p{margin-top:14px}.activity-grid{grid-template-columns:1fr}.activity-photo:first-child{grid-column:auto;min-height:360px}.activity-photo{min-height:330px}.awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards{padding:48px 0}.awards-layout{grid-template-columns:1fr}.awards-feature{min-height:360px;padding:30px 24px}.awards-watermark{width:68%;right:-38px;top:28px}.awards-list{display:block;min-height:0}.award-row{grid-template-columns:1fr;gap:10px;padding:24px}.award-rank{font-size:38px}.contact{padding:48px 0}.contact-intro,.contact-form{padding:28px 22px}.contact-intro h3{font-size:34px}.contact-form h3{font-size:29px}.form-grid{grid-template-columns:1fr}.form-field.wide{grid-column:auto}.contact-link{align-items:flex-start;flex-direction:column}.contact-link strong{text-align:left}.contact-form .btn{width:100%}
     }
 
     .about-editorial{padding:58px 0;background:#101012}
@@ -358,8 +376,36 @@
         <div class="awards-note">Career recognition shown above reflects achievements earned across Abir Hlal's professional history and does not imply current affiliation with prior brokerages.</div>
       </div>
     </section>
-<section class="cta" id="contact">
-      <div class="wrap cta-grid"><div><h3>Ready for your next move?</h3><p>Let’s make the next step clear and confident.</p></div><a class="btn gold" href="mailto:abir.realtor@abir.ca">Contact Abir</a></div>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-intro">
+          <div class="eyebrow">Contact Abir</div>
+          <h3>Ready for your next move?</h3>
+          <p>Call or email Abir directly, or send a message below. Whether you are buying, selling, renting, or planning your next investment, the conversation starts here.</p>
+          <div class="contact-actions">
+            <a class="contact-link" href="mailto:info@abir.ca"><span>Email</span><strong>info@abir.ca</strong></a>
+            <a class="contact-link" href="tel:+14168295037"><span>Call</span><strong>416-829-5037</strong></a>
+          </div>
+        </div>
+
+        <form class="contact-form" action="https://formsubmit.co/info@abir.ca" method="POST">
+          <h3>Send a message</h3>
+          <input type="hidden" name="_subject" value="New inquiry from Abir.ca">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://abir.ca/#contact">
+          <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          <div class="form-grid">
+            <label class="form-field">Full name<input type="text" name="Name" autocomplete="name" required></label>
+            <label class="form-field">Email<input type="email" name="Email" autocomplete="email" required></label>
+            <label class="form-field">Phone<input type="tel" name="Phone" autocomplete="tel"></label>
+            <label class="form-field">I'm interested in<select name="Interest" required><option value="" selected disabled>Select one</option><option>Buying</option><option>Selling</option><option>Renting</option><option>Investing</option><option>Other</option></select></label>
+            <label class="form-field wide">Message<textarea name="Message" required></textarea></label>
+          </div>
+          <button class="btn gold" type="submit">Send message</button>
+          <p class="form-note">Messages are sent to Abir at info@abir.ca.</p>
+        </form>
+      </div>
     </section>
   </main>
 
