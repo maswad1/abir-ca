@@ -1,4 +1,5 @@
 from pathlib import Path
+# trigger testimonials polish
 p=Path('index.html')
 s=p.read_text(encoding='utf-8')
 old_css='''    .testimonials{padding:64px 0;background:#0b0b0c;border-top:1px solid var(--line)}
