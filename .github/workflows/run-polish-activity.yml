@@ -1,0 +1,25 @@
+name: Polish Recent Activity
+on:
+  push:
+    branches:
+      - tmp-activity-ready
+    paths:
+      - 'polish_activity.py'
+      - '.github/workflows/run-polish-activity.yml'
+permissions:
+  contents: write
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Polish Recent Activity section
+        run: python3 polish_activity.py
+      - name: Commit update and remove temporary updater
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm polish_activity.py .github/workflows/run-polish-activity.yml
+          git add index.html polish_activity.py .github/workflows/run-polish-activity.yml
+          git commit -m "Polish Recent Activity with real photography"
+          git push
