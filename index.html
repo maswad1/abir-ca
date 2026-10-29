@@ -166,6 +166,9 @@
     .contact-form .btn{margin-top:20px}
     .contact-form .btn:disabled{opacity:.65;cursor:wait}
     .form-note{margin:12px 0 0;color:#77716a;font-size:10px;line-height:1.5}
+    .form-note.success{margin:18px 0 0;padding:26px 24px;border:1px solid var(--gold);background:linear-gradient(145deg,#17150f,#101012);color:#d8d2ca;font-size:14px;line-height:1.65}
+    .form-note.success strong{display:block;color:var(--gold2);font:600 27px/1.15 var(--serif);margin-bottom:10px}
+    .form-note.success span{display:block;color:#c8c1b8}
     footer{padding:25px 0 34px;border-top:1px solid #151517;color:#77736f;font-size:11px}
     .foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
     .footer-brand{display:flex;align-items:center;gap:12px}
@@ -449,18 +452,24 @@
       const status=document.getElementById('contactStatus');
       submit.disabled=true;
       submit.textContent='Sending...';
+      status.classList.remove('success');
       status.textContent='Sending your message...';
       try{
         const payload=new URLSearchParams();
         new FormData(contactForm).forEach((value,key)=>payload.append(key,String(value)));
         await fetch(contactEndpoint,{method:'POST',mode:'no-cors',body:payload});
         contactForm.reset();
-        status.textContent='Thank you. Your message has been sent to Abir.';
+        const fields=contactForm.querySelector('.form-grid');
+        if(fields) fields.style.display='none';
+        submit.style.display='none';
+        status.classList.add('success');
+        status.innerHTML='<strong>Thank you for contacting Abir.ca.</strong><span>Your message has been sent successfully. Abir will be in touch with you as soon as possible.</span>';
       }catch(err){
+        status.classList.remove('success');
         status.textContent='We could not send your message. Please call or email Abir directly.';
       }finally{
         submit.disabled=false;
-        submit.textContent='Send message';
+        if(submit.style.display!=='none') submit.textContent='Send message';
       }
     })}
     document.getElementById('year').textContent=new Date().getFullYear();
