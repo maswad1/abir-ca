@@ -110,15 +110,20 @@
     .activity{padding:68px 0;background:#0b0b0c;border-top:1px solid var(--line)}
     .activity-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:30px}
     .activity-head h2{margin:10px 0 0}
-    .activity-head p{max-width:480px;color:var(--muted);font-size:14px;line-height:1.7;margin:0}
-    .activity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .activity-card{min-height:270px;padding:30px;border:1px solid #2b2925;background:linear-gradient(145deg,#18181a,#101011);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-    .activity-card:before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
-    .activity-status{color:var(--gold2);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-    .activity-mark{font:500 54px/1 var(--serif);color:rgba(223,191,134,.82);margin:34px 0}
-    .activity-card h3{font-size:27px;margin:0 0 9px}
-    .activity-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
-    .activity-note{margin-top:18px;color:#817b75;font-size:11px;line-height:1.6}
+    .activity-head p{max-width:430px;color:var(--muted);font-size:14px;line-height:1.65;margin:0}
+    .activity-grid{display:grid;grid-template-columns:1.12fr .88fr .88fr;gap:18px}
+    .activity-photo{position:relative;min-height:360px;overflow:hidden;border:1px solid #2b2925;background:#141416}
+    .activity-photo:first-child{min-height:430px}
+    .activity-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .activity-photo:first-child img{object-position:center 38%}
+    .activity-photo:nth-child(2) img{object-position:center 34%}
+    .activity-photo:nth-child(3) img{object-position:center 30%}
+    .activity-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 25%,rgba(0,0,0,.82) 100%)}
+    .activity-copy{position:absolute;z-index:2;left:24px;right:24px;bottom:22px}
+    .activity-status{color:var(--gold2);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .activity-copy h3{font-size:clamp(24px,2.4vw,34px);margin:8px 0 0;line-height:1.05}
+    .activity-copy p{margin:9px 0 0;color:#d0cbc5;font-size:12px;line-height:1.55;max-width:340px}
+
     .awards{padding:68px 0;background:#111113;border-top:1px solid var(--line)}
     .awards-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:34px}
     .awards-head h2{margin:10px 0 0}
@@ -174,7 +179,7 @@
       .hero-grid{grid-template-columns:1fr}.hero-photo{min-height:520px}.hero-copy{padding:40px 34px}
       .pillar-grid{grid-template-columns:1fr 1fr;padding:18px 0}
       .home-search-shell{grid-template-columns:1fr}.search-photo{min-height:380px}.sell-strip{grid-template-columns:240px 1fr}.about-grid{grid-template-columns:1fr 1fr}.about-copy{padding:10px 0}.about-main{height:430px}
-      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.activity-grid{grid-template-columns:1fr 1fr}.activity-card:last-child{grid-column:1/-1}.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}.event-card:last-child{grid-column:1/-1}
+      .tile-frame{height:280px}.showcase-grid{grid-template-columns:1fr}.feature{min-height:500px}.activity-grid{grid-template-columns:1fr 1fr}.activity-photo:first-child{grid-column:1/-1;min-height:460px}.awards-grid{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:1fr 1fr}.event-card:last-child{grid-column:1/-1}
       .mobile-links{display:none;position:absolute;left:0;right:0;top:78px;background:#0d0d0f;border-top:1px solid #262626;padding:18px 24px 24px}
       .mobile-links.open{display:grid;gap:18px}.mobile-links a{font-size:15px;color:#e7e1da}
     }
@@ -186,7 +191,7 @@
       .pillar-grid{grid-template-columns:1fr 1fr;gap:20px 16px}.home-search{padding:42px 0}.home-search-shell{grid-template-columns:1fr}.search-photo{min-height:330px}.search-panel{padding:30px 24px}.sell-strip{grid-template-columns:1fr}.sell-photo{min-height:260px}.sell-copy{padding:28px 24px;display:block}.sell-copy .btn{margin-top:20px}.about{padding:30px 0}
       .about-grid{grid-template-columns:1fr}.about-main{height:440px}.tile-frame{height:350px}
       .showcase{padding:40px 0}.live-listings{padding:40px 0}.live-listings-head{display:block}.live-listings-head p{margin-top:14px}.listings-frame-wrap,.listings-frame{min-height:720px;height:720px}.listings-fallback{display:block}.listings-fallback .btn{margin-top:14px}.showcase-head{display:block}.showcase-head p{margin-top:14px}.feature{min-height:460px}
-      .activity{padding:48px 0}.activity-head{display:block}.activity-head p{margin-top:14px}.activity-grid{grid-template-columns:1fr}.activity-card:last-child{grid-column:auto}.activity-card{min-height:220px}.awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.testimonials{padding:48px 0}.testimonial-shell{padding:32px 22px}.testimonial-placeholder .btn{width:100%}.events{padding:48px 0}.events-head{display:block}.events-head p{margin-top:14px}.events-grid{grid-template-columns:1fr}.event-card:last-child{grid-column:auto}.event-card{min-height:225px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
+      .activity{padding:48px 0}.activity-head{display:block}.activity-head p{margin-top:14px}.activity-grid{grid-template-columns:1fr}.activity-photo:first-child{grid-column:auto;min-height:360px}.activity-photo{min-height:330px}.awards{padding:48px 0}.awards-head{display:block}.awards-head p{margin-top:14px}.awards-grid{grid-template-columns:1fr}.award-card{min-height:190px}.testimonials{padding:48px 0}.testimonial-shell{padding:32px 22px}.testimonial-placeholder .btn{width:100%}.events{padding:48px 0}.events-head{display:block}.events-head p{margin-top:14px}.events-grid{grid-template-columns:1fr}.event-card:last-child{grid-column:auto}.event-card{min-height:225px}.cta-grid{display:block}.cta .btn{margin-top:22px}.cta h3{font-size:32px}
     }
 
     .about-editorial{padding:58px 0;background:#101012}
@@ -315,15 +320,23 @@
     <section class="activity" id="activity">
       <div class="wrap">
         <div class="activity-head">
-          <div><div class="eyebrow">Recent Activity</div><h2>In the field with Abir.</h2></div>
-          <p>Real moments from active listings, open houses, and successful sales across the communities Abir serves.</p>
+          <div><div class="eyebrow">Real Estate, In Motion</div><h2>Hands-on from start to finish.</h2></div>
+          <p>Property presentation, market preparation, and personal guidance — with Abir involved at every stage.</p>
         </div>
         <div class="activity-grid">
-          <article class="activity-card"><div><div class="activity-status">For Sale · Open House</div><div class="activity-mark">01</div></div><div><h3>Bringing homes to market.</h3><p>Professional presentation and hands-on attention from launch through buyer visits.</p></div></article>
-          <article class="activity-card"><div><div class="activity-status">Sold</div><div class="activity-mark">02</div></div><div><h3>Results that move clients forward.</h3><p>Focused strategy, strong execution, and successful closings.</p></div></article>
-          <article class="activity-card"><div><div class="activity-status">Client Success</div><div class="activity-mark">03</div></div><div><h3>Another move completed.</h3><p>Celebrating the moments that turn real-estate plans into accomplished goals.</p></div></article>
+          <article class="activity-photo">
+            <img src="pictures/abir_photo_5.png" alt="Abir Hlal outside a modern home">
+            <div class="activity-copy"><div class="activity-status">Property Showcase</div><h3>Presenting homes with purpose.</h3></div>
+          </article>
+          <article class="activity-photo">
+            <img src="pictures/abir_photo_2.png" alt="Abir Hlal inside a bright luxury property">
+            <div class="activity-copy"><div class="activity-status">Preparation</div><h3>Details matter before launch.</h3></div>
+          </article>
+          <article class="activity-photo">
+            <img src="pictures/abir_photo_7.png" alt="Portrait of Abir Hlal">
+            <div class="activity-copy"><div class="activity-status">Personal Guidance</div><h3>One advisor. Every step.</h3></div>
+          </article>
         </div>
-        <div class="activity-note">Abir's recent activity photography is being prepared for this section; the layout is ready for the For Sale, Open House, and Sold images.</div>
       </div>
     </section>
     <section class="awards" id="awards">
