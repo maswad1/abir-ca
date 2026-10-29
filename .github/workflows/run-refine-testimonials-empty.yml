@@ -1,0 +1,24 @@
+name: Refine Testimonials Empty State
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/scripts/refine_testimonials_empty.py'
+      - '.github/workflows/run-refine-testimonials-empty.yml'
+permissions:
+  contents: write
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refine testimonials empty state
+        run: python .github/scripts/refine_testimonials_empty.py
+      - name: Commit update and remove temporary updater
+        run: |
+          rm -f .github/scripts/refine_testimonials_empty.py .github/workflows/run-refine-testimonials-empty.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/scripts/refine_testimonials_empty.py .github/workflows/run-refine-testimonials-empty.yml
+          git commit -m "Refine testimonials coming-soon state"
+          git push
