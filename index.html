@@ -164,6 +164,7 @@
     .form-field textarea{min-height:140px;resize:vertical}
     .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold)}
     .contact-form .btn{margin-top:20px}
+    .contact-form .btn:disabled{opacity:.65;cursor:wait}
     .form-note{margin:12px 0 0;color:#77716a;font-size:10px;line-height:1.5}
     footer{padding:25px 0 34px;border-top:1px solid #151517;color:#77736f;font-size:11px}
     .foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -391,14 +392,15 @@
         <form class="contact-form" id="contactForm">
           <h3>Send a message</h3>
           <div class="form-grid">
-            <label class="form-field">Full name<input type="text" name="Name" autocomplete="name" required></label>
-            <label class="form-field">Email<input type="email" name="Email" autocomplete="email" required></label>
-            <label class="form-field">Phone<input type="tel" name="Phone" autocomplete="tel"></label>
-            <label class="form-field">I'm interested in<select name="Interest" required><option value="" selected disabled>Select one</option><option>Buying</option><option>Selling</option><option>Renting</option><option>Investing</option><option>Other</option></select></label>
-            <label class="form-field wide">Message<textarea name="Message" required></textarea></label>
+            <label class="form-field">Full name<input type="text" name="name" autocomplete="name" required></label>
+            <label class="form-field">Email<input type="email" name="email" autocomplete="email" required></label>
+            <label class="form-field">Phone<input type="tel" name="phone" autocomplete="tel"></label>
+            <label class="form-field">I'm interested in<select name="interest" required><option value="" selected disabled>Select one</option><option>Buying</option><option>Selling</option><option>Renting</option><option>Investing</option><option>Other</option></select></label>
+            <label class="form-field wide">Message<textarea name="message" required></textarea></label>
           </div>
-          <button class="btn gold" type="submit">Send message</button>
-          <p class="form-note">This opens your email app with the message addressed to info@abir.ca and ready to send.</p>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <button class="btn gold" id="contactSubmit" type="submit">Send message</button>
+          <p class="form-note" id="contactStatus">Your message will be sent directly to Abir.</p>
         </form>
       </div>
     </section>
@@ -440,17 +442,26 @@
     function setSearchMode(mode){propertyMode=mode;const b=document.getElementById('buyTab'),r=document.getElementById('rentTab');if(b&&r){b.classList.toggle('active',mode==='buy');r.classList.toggle('active',mode==='rent')}}
     function runPropertySearch(){const area=document.getElementById('searchArea').value;window.open(propertyUrls[propertyMode][area],'_blank','noopener')}
     const contactForm=document.getElementById('contactForm');
-    if(contactForm){contactForm.addEventListener('submit',e=>{
+    const contactEndpoint='https://script.google.com/macros/s/AKfycbx-pGGknjDSLghWpeHGDGRkDPfM-ZdYajcIqH5EY9lgKoFsSjYbojKB83y1fdmYqclnRg/exec';
+    if(contactForm){contactForm.addEventListener('submit',async e=>{
       e.preventDefault();
-      const data=new FormData(contactForm);
-      const name=String(data.get('Name')||'').trim();
-      const email=String(data.get('Email')||'').trim();
-      const phone=String(data.get('Phone')||'').trim();
-      const interest=String(data.get('Interest')||'').trim();
-      const message=String(data.get('Message')||'').trim();
-      const subject=`Abir.ca inquiry - ${interest || 'Real Estate'}`;
-      const body=`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nInterest: ${interest}\n\nMessage:\n${message}`;
-      window.location.href=`mailto:info@abir.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const submit=document.getElementById('contactSubmit');
+      const status=document.getElementById('contactStatus');
+      submit.disabled=true;
+      submit.textContent='Sending...';
+      status.textContent='Sending your message...';
+      try{
+        const payload=new URLSearchParams();
+        new FormData(contactForm).forEach((value,key)=>payload.append(key,String(value)));
+        await fetch(contactEndpoint,{method:'POST',mode:'no-cors',body:payload});
+        contactForm.reset();
+        status.textContent='Thank you. Your message has been sent to Abir.';
+      }catch(err){
+        status.textContent='We could not send your message. Please call or email Abir directly.';
+      }finally{
+        submit.disabled=false;
+        submit.textContent='Send message';
+      }
     })}
     document.getElementById('year').textContent=new Date().getFullYear();
   </script>
